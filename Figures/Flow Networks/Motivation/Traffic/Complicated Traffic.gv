@@ -1,0 +1,28 @@
+digraph G{
+	rankdir = LR;
+
+	s [label = "Source Junction"];
+	t [label = "Target Junction"];
+	j1 [label = "Junction 1"];
+	j2 [label = "Junction 2"];
+	j3 [label = "Junction 3"];
+	j4 [label = "Junction 4"];
+	j5 [label = "Junction 5"];
+
+	s -> j1 [penwidth = 1];
+	s -> j3 [penwidth = 4];
+	
+	j4 -> t [penwidth = 5];
+	j5 -> t [penwidth = 2];
+
+	j1 -> j3 [penwidth = 2];
+	j3 -> j1;
+	j2 -> j1 [penwidth = 1];
+	j3 -> j2 [penwidth = 2.5];
+	j2 -> j5;
+	j1 -> j5 [penwidth = 3];
+	j3 -> j4;
+	j4 -> j5;
+	j5 -> j4;
+
+}

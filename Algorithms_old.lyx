@@ -1,0 +1,2376 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\usepackage[perpage]{footmisc}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-std
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "Algorithms"
+\pdf_author "Eyal Arubas"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Algorithms
+\end_layout
+
+\begin_layout Author
+Eyal Arubas
+\end_layout
+
+\begin_layout Standard
+This book is based on an algorithms course I took in 2012 at the Hebrew
+ University of Jerusalem, Israel.
+ The material is based on my notes from the lectures of 
+\begin_inset CommandInset href
+LatexCommand href
+name "Prof. Alex Samorodnitsky"
+target "http://www.cs.huji.ac.il/~salex/"
+
+\end_inset
+
+, as well as my readings of 
+\begin_inset CommandInset href
+LatexCommand href
+name "Introduction To Algorithms (T.H. Corman)"
+target "http://mitpress.mit.edu/books/introduction-algorithms"
+
+\end_inset
+
+, 
+\begin_inset CommandInset href
+LatexCommand href
+name "Algorithms (U.V. Vazirani)"
+target "http://www.cs.berkeley.edu/~vazirani/algorithms.html"
+
+\end_inset
+
+, entries in 
+\begin_inset CommandInset href
+LatexCommand href
+name "Wikipedia"
+target "http://www.wikipedia.com/"
+
+\end_inset
+
+ and more.
+\end_layout
+
+\begin_layout Standard
+I wrote this book because I find the subject interesting, and it helped
+ me prepare for my exam.
+ Hopefully it will help whoever is reading it as well.
+\end_layout
+
+\begin_layout Standard
+Needless to say, I take no responsibility for the accuracy, completeness
+ and correctness of what is written here.
+ I'm not, in any way, an authority on algorithms, so take it as it is.
+ That being said, I still wish this book to be as helpful as possible, so
+ if you find any mistakes or inaccuracies, please send me an email to 
+\series bold
+
+\begin_inset CommandInset href
+LatexCommand href
+target "EyalArubas@gmail.com"
+type "mailto:"
+
+\end_inset
+
+
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Also, you are more than welcomed to just tell me what you think of this
+ book.
+ I like the feedback.
+\end_layout
+
+\begin_layout Standard
+The structure of the book is such that each chapter will begin with several
+ examples of relevant problems.
+ These examples will demonstrate a situation in which we need to reach a
+ solution by solving a problem of a certain type.
+ Then in the rest of the chapter we will discuss methods for solving this
+ type of problems.
+ Each chapter is independent, so you can just jump directly to a subject
+ of your choice.
+\end_layout
+
+\begin_layout Standard
+The latest version of this book can be downloaded from my website at 
+\series bold
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://EyalArubas.com"
+
+\end_inset
+
+
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+I encourage you to share this book and pass it along, if you find it useful
+ of course.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Greedy Algorithms
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Greedy Algorithm
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Motivation
+\end_layout
+
+\begin_layout Subsection
+Robbing a Bank
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Robbing-a-Bank"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let's say we are bank robbers, and we want to maximize our profit.
+ The problem is that we brought just one bag, which can contain up to a
+ 100 units of stolen items.
+ We rob the bank at night, so it's empty of people, and we have enough time
+ to think which items we want to take.
+\end_layout
+
+\begin_layout Standard
+The inventory of the bank is as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Item
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Amount
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total Worth
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Gold
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1000
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Silver
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1500
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bronze
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2000
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As the robbers, our task is to figure out how many units of Gold, Silver
+ and Bronze we put in the bag, such that our profit is maximal.
+ In other words, if we take 
+\begin_inset Formula $x$
+\end_inset
+
+ units of Gold, 
+\begin_inset Formula $y$
+\end_inset
+
+ units of Silver and 
+\begin_inset Formula $z$
+\end_inset
+
+ units of Bronze, such that 
+\begin_inset Formula $x+y+z=100$
+\end_inset
+
+, what would be the best choice of 
+\begin_inset Formula $x$
+\end_inset
+
+, 
+\begin_inset Formula $y$
+\end_inset
+
+ and 
+\begin_inset Formula $z$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Standard
+For example:
+\end_layout
+
+\begin_layout Itemize
+If we take just 100 units of bronze (
+\begin_inset Formula $x=0,y=0,z=100$
+\end_inset
+
+), our profit would be 2000.
+\end_layout
+
+\begin_layout Itemize
+If we take 50 units of Bronze and 50 units of Silver (
+\begin_inset Formula $x=0,y=50,z=50$
+\end_inset
+
+), our profit would be 2500.
+\end_layout
+
+\begin_layout Itemize
+If we take 90 units of Bronze and 10 units of Silver (
+\begin_inset Formula $x=10,y=0,z=90$
+\end_inset
+
+), our profit would be 2800.
+\end_layout
+
+\begin_layout Standard
+Since we are robbers, we are naturally greedy, so we decide to take as much
+ as possible from the more expensive items first.
+ We make the following choice:
+\end_layout
+
+\begin_layout Itemize
+10 units of Gold, 50 units of Silver, and fill the rest of the bag with
+ the least expensive item - 40 units of Bronze (
+\begin_inset Formula $x=10,y=50,z=40$
+\end_inset
+
+).
+ In that case our profit is 3300.
+\end_layout
+
+\begin_layout Standard
+As we will later learn to prove, this is the maximal possible profit.
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+As we have seen, certain problems can be solved by employing a greedy strategy.
+ By considering what is best 
+\series bold
+now
+\series default
+, without regarding the consequences 
+\series bold
+later
+\series default
+, we can reach an optimal solution.
+ Obviously not all problems can be solved optimally by this approach.
+ For most problems, we can't just ignore the consequences of our current
+ choices and we must look at the problem with a global view.
+ So in order to justify the use of the greedy approach, we want to be able
+ to identify the problems for which an optimal solution is guarantied by
+ this approach.
+\end_layout
+
+\begin_layout Standard
+Apparantly, all problems which can be solved greedily exhibit certain mathematic
+al characteristics.
+ We call the mathematical entities which adhere to these characteristics
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Matroids
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The characteristics of matroids make them very relevant to optimization
+ problems, which can be solved with greedy algorithms.
+ We will later see that by taking an optimization problem and finding a
+ matroid which describes it, we can solve it optimally with a generic greedy
+ algorithm.
+ The challange, for most problems, will be to formulate the problem in such
+ a way that it will correspond to a matroid.
+\end_layout
+
+\begin_layout Standard
+Greedy algorithms are a somewhat unique family of algorithms, in the sense
+ that:
+\end_layout
+
+\begin_layout Enumerate
+They solve certain optimization problems.
+ Meaning, by using the greedy algorithm, we can find the optimal solution
+ to the problem.
+\end_layout
+
+\begin_layout Enumerate
+We can prove it.
+\end_layout
+
+\begin_layout Standard
+The fact that we can prove that greedy algorithms solve certain optimization
+ problems, is not trivial, and is thanks to matroids.
+\end_layout
+
+\begin_layout Standard
+But before discussing Matroids, we first show several optimization problems
+ and solve them with 
+\emph on
+exchange lemmas
+\emph default
+.
+ Then a mathematical discussion about matroids will be presented, and will
+ seem a bit unrelated to algorithms.
+ After we complete this discussion, another discussion will be made about
+ the equivalency of matroids to optimization problems, which will be demonstrate
+d through more examples.
+ In the last part of the chapter we will see the full process of defining
+ a problem, transforming it into a matroid and finding an optimal solution
+ through a generic greedy algorithm.
+\end_layout
+
+\begin_layout Section
+Exchange Lemmas
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Exchange Lemma
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Oftentimes we can formulate an algorithm which we theorize solves some optimizat
+ion problem.
+ If it indeed does solve the problem, we want to be able to prove it.
+ Usually we do it by saying that if some optimal solution to the problem
+ exists, then it will coincide with the solution of our algorithm.
+ Our goal, then, is to show that we can take the (currently unknown) optimal
+ solution (which is usually not unique), manipulate it without damaging
+ its optimality, and reach the solution given by our algorithm; thus showing
+ that it, too, is an optimal solution.
+\end_layout
+
+\begin_layout Standard
+For this purpose we use 
+\emph on
+exchange lemmas.
+
+\emph default
+ What these lemmas actually do is show that we can manipulate the uknown
+ optimal solution, i.e.
+ 
+\emph on
+exchange
+\emph default
+ part of it with part of our own solution, and still remain with an optimal
+ solution.
+ If we can show that eventually we can replace the 
+\series bold
+entire
+\series default
+ uknown optimal solution with our own solution, and still remain optimal,
+ then we have shown that our solution is as good and as optimal.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Unknown optimal solution
+\emph default
+ sounds like a fallacy.
+ How can a solution be optimal without knowing what it is? The fact is that
+ we don't need to know exactly what this optimal solution is, but we just
+ need to know what characteristics it must hold in order to be optimal.
+\end_layout
+
+\begin_layout Standard
+To demonstrate, we show several examples.
+\end_layout
+
+\begin_layout Subsection
+Partial Knapsack Problem
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Partial Knapsack
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is a similar problem to the 
+\begin_inset Quotes eld
+\end_inset
+
+Robbing a bank
+\begin_inset Quotes erd
+\end_inset
+
+ example given at 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Robbing-a-Bank"
+
+\end_inset
+
+.
+ We have a knapsack which can carry a certain amount of weight.
+ We also have a list of items; each item has it's own weight and value.
+ We want to insert items into the knapsack such that the total value of
+ items inside the knapsack is maximal.
+ Notice that items needn't be whole, and can be inserted partially into
+ the knapsack.
+\end_layout
+
+\begin_layout Standard
+Our input is:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $W$
+\end_inset
+
+ - The maximum wight the knapsack can carry.
+\end_layout
+
+\begin_layout Enumerate
+A list of 
+\begin_inset Formula $n$
+\end_inset
+
+ items.
+ Item 
+\begin_inset Formula $i$
+\end_inset
+
+ is represented by the pair 
+\begin_inset Formula $\left(v_{i},w_{i}\right)$
+\end_inset
+
+, where 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+ is the value of the item and 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ is the weight of the item.
+ All values and wights are non negative.
+\end_layout
+
+\begin_layout Standard
+Our output should be:
+\end_layout
+
+\begin_layout Standard
+A list of numbers 
+\begin_inset Formula $x_{1},x_{2},...,x_{n}$
+\end_inset
+
+, where 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ is the partial amount of item 
+\begin_inset Formula $i$
+\end_inset
+
+ which is inserted into the knapsack (
+\begin_inset Formula $0\leq x_{i}\leq1$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+The numbers 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ adhere to the constraint 
+\begin_inset Formula $\sum_{i=1}^{n}x_{i}w_{i}\leq W$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Our goal is to maximize the total value of items in the knapsack 
+\begin_inset Formula $\sum_{i=1}^{n}x_{i}v_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Algorithm
+\end_layout
+
+\begin_layout Standard
+We propose a greedy algorithm which yields an optimal solution to this problem.
+ We notice that greediness is the most natural approach in this case, since
+ our goal is to maximal the value of the knapsack, and we can (intuitivly)
+ achieve that by grabing as much as possible from the most valued items.
+\end_layout
+
+\begin_layout Subsection
+Independent Vectors Set Problem
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Independent Vectors Set
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Suppose we have a finite vectors set 
+\begin_inset Formula $F$
+\end_inset
+
+ of 
+\begin_inset Formula $n$
+\end_inset
+
+ vectors, in some vector space 
+\begin_inset Formula $V$
+\end_inset
+
+, and a positive weight functions on these vectors 
+\begin_inset Formula $\mu:V\rightarrow R^{+}$
+\end_inset
+
+ (this function assigns a positive scalar value to each vector).
+\end_layout
+
+\begin_layout Standard
+Our goal is to find a subset 
+\begin_inset Formula $S$
+\end_inset
+
+ of 
+\begin_inset Formula $F$
+\end_inset
+
+ (
+\begin_inset Formula $S\subseteq F$
+\end_inset
+
+), such that the vectors in 
+\begin_inset Formula $S$
+\end_inset
+
+ are linearly independent and the total weight of 
+\begin_inset Formula $S$
+\end_inset
+
+ is maximized (
+\begin_inset Formula $\mu\left(S\right)=\sum_{v\in S}\mu\left(v\right)$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsubsection
+Algorithm
+\end_layout
+
+\begin_layout Standard
+In this problem, too, it's evident that greediness is the most intuitive
+ approach.
+ We want to maximize the weight of 
+\begin_inset Formula $S$
+\end_inset
+
+, so we just add the vectors with the maximal weight, as long as linear
+ independence in 
+\begin_inset Formula $S$
+\end_inset
+
+ is preserved.
+\end_layout
+
+\begin_layout Standard
+Formally, our algorithm is:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Enumerate
+Sort the vectors in 
+\begin_inset Formula $F$
+\end_inset
+
+ by thier weight in descending order, such that 
+\begin_inset Formula $\mu\left(v_{1}\right)\geq\mu\left(v_{2}\right)\geq...\geq\mu\left(v_{n}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Initialize 
+\begin_inset Formula $S$
+\end_inset
+
+ as the empty set: 
+\begin_inset Formula $S=\emptyset$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+For 
+\begin_inset Formula $i=1...n$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If 
+\begin_inset Formula $S\cup\left\{ v_{i}\right\} $
+\end_inset
+
+ is linearly independent, update: 
+\begin_inset Formula $S=S\cup\left\{ v_{i}\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Return 
+\begin_inset Formula $S$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Maximal weight independent vectors set algorithm
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Maximal-weight-independent"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Proof
+\end_layout
+
+\begin_layout Standard
+We want to prove that algorithm 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Maximal-weight-independent"
+
+\end_inset
+
+ indeed returns a set of linearly independent vectors with maximal weight.
+\end_layout
+
+\begin_layout Standard
+For this, we need to use the following lemma:
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:Let--two"
+
+\end_inset
+
+Let 
+\begin_inset Formula $A,B$
+\end_inset
+
+ two finite subsets of linearly independent vectors in vector space 
+\begin_inset Formula $V$
+\end_inset
+
+.
+ Suppose 
+\begin_inset Formula $\left|A\right|>\left|B\right|$
+\end_inset
+
+.
+ Then there is a vector 
+\begin_inset Formula $v\in A\backslash B$
+\end_inset
+
+ such that 
+\begin_inset Formula $B\cup\left\{ v\right\} $
+\end_inset
+
+ in linearly independent.
+\end_layout
+
+\begin_layout Standard
+In others words, if 
+\begin_inset Formula $A$
+\end_inset
+
+ has more vectors than 
+\begin_inset Formula $B$
+\end_inset
+
+, then we can find some vector 
+\begin_inset Formula $v$
+\end_inset
+
+ in 
+\begin_inset Formula $A$
+\end_inset
+
+ and add it to 
+\begin_inset Formula $B$
+\end_inset
+
+ such that 
+\begin_inset Formula $B\cup\left\{ v\right\} $
+\end_inset
+
+ is also linearly independent.
+\end_layout
+
+\begin_layout Proof
+We need to show that there is a 
+\begin_inset Formula $v\in A\backslash B$
+\end_inset
+
+ that is linearly independent with 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ We will prove by negation.
+ Let's suppose that there is no such vector.
+ This means that 
+\series bold
+all
+\series default
+ vectors in 
+\begin_inset Formula $A$
+\end_inset
+
+ are linearly dependent with 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ In other words, 
+\begin_inset Formula $\forall v\in A:v\in B$
+\end_inset
+
+, which means that 
+\begin_inset Formula $span\left(A\right)\subseteq span\left(B\right)$
+\end_inset
+
+.
+ But then 
+\begin_inset Formula $\dim\left(span\left(A\right)\right)\leq\dim\left(span\left(B\right)\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Because 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ are sets of linearly independent vectors, then 
+\begin_inset Formula $\left|A\right|=\dim\left(span\left(A\right)\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\left|B\right|=\dim\left(span\left(B\right)\right)$
+\end_inset
+
+, but this means that 
+\begin_inset Formula $\left|A\right|\leq\left|B\right|$
+\end_inset
+
+, which is a contradiction to our assumption that 
+\begin_inset Formula $\left|A\right|>\left|B\right|$
+\end_inset
+
+.
+ Thus we conclude that indeed there is a vector 
+\begin_inset Formula $v\in A\backslash B$
+\end_inset
+
+ such that 
+\begin_inset Formula $B\cup\left\{ v\right\} $
+\end_inset
+
+ in linearly independent.
+\end_layout
+
+\begin_layout Standard
+Now we can continue with the proof of the optimality of algorithm 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Maximal-weight-independent"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Remember that we want to prove that the set 
+\begin_inset Formula $S$
+\end_inset
+
+ which is returned by our algorithm has the maximal weight of all linearly
+ independent subsets of 
+\begin_inset Formula $F$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We will prove by negation.
+\end_layout
+
+\begin_layout Standard
+Suppose there is some better, optimal, solution 
+\begin_inset Formula $T$
+\end_inset
+
+ such that 
+\begin_inset Formula $\mu\left(T\right)>\mu\left(S\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+By lemma 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:Let--two"
+
+\end_inset
+
+, 
+\begin_inset Formula $\left|S\right|=\left|T\right|$
+\end_inset
+
+, because:
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $\left|S\right|>\left|T\right|$
+\end_inset
+
+, then by the lemma, there is a vector 
+\begin_inset Formula $v\in S\backslash T$
+\end_inset
+
+ such that 
+\begin_inset Formula $T\cup\left\{ v\right\} $
+\end_inset
+
+ is linearly independent.
+ But this contradict the optimality of 
+\begin_inset Formula $T$
+\end_inset
+
+, thus it's impossible.
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $\left|T\right|>\left|S\right|$
+\end_inset
+
+, then by the lemma, there is a vector 
+\begin_inset Formula $v\in T\backslash S$
+\end_inset
+
+ such that 
+\begin_inset Formula $S\cup\left\{ v\right\} $
+\end_inset
+
+ is linearly independent.
+ But this contradicts the operation of our algorithm, which was supposed
+ to add this vector 
+\begin_inset Formula $v$
+\end_inset
+
+ to 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ So this is also impossible.
+\end_layout
+
+\begin_layout Standard
+Thus indeed 
+\begin_inset Formula $\left|S\right|=\left|T\right|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Let's write the vectors in 
+\begin_inset Formula $S$
+\end_inset
+
+ and 
+\begin_inset Formula $T$
+\end_inset
+
+ by descending weight order:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{array}{cc}
+S=\left\{ v_{1},v_{2},...,v_{k}\right\}  & \mu\left(v_{1}\right)\geq\mu\left(v_{2}\right)\geq...\geq\mu\left(v_{k}\right)\\
+T=\left\{ u_{1},u_{2},...,u_{k}\right\}  & \mu\left(u_{1}\right)\geq\mu\left(u_{2}\right)\geq...\geq\mu\left(u_{k}\right)
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Because 
+\begin_inset Formula $\mu\left(T\right)>\mu\left(S\right)$
+\end_inset
+
+, then there must be some index 
+\begin_inset Formula $i$
+\end_inset
+
+ which is the first occurance of 
+\begin_inset Formula $\mu\left(u_{i}\right)>\mu\left(v_{i}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We denote:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A=\left\{ v_{1},...,v_{i-1}\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $B=\left\{ u_{1},...,u_{i-1},u_{i}\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Obviously both 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ are sets of linearly independent vectors, and 
+\begin_inset Formula $\left|B\right|>\left|A\right|$
+\end_inset
+
+.
+ By lemma 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:Let--two"
+
+\end_inset
+
+, there is a vector 
+\begin_inset Formula $u\in B\backslash A$
+\end_inset
+
+ such that 
+\begin_inset Formula $A\cup\left\{ u\right\} $
+\end_inset
+
+ is linearly independent.
+ Because 
+\begin_inset Formula $S$
+\end_inset
+
+ and 
+\begin_inset Formula $T$
+\end_inset
+
+ are ordered by descending weights, then the weight of this vector 
+\begin_inset Formula $u$
+\end_inset
+
+ (whichever it may be) is at least as the smallest-weight vector in 
+\begin_inset Formula $B,$
+\end_inset
+
+ which is 
+\begin_inset Formula $u_{i}$
+\end_inset
+
+.
+ In other words 
+\begin_inset Formula $\mu\left(u\right)\geq\mu\left(u_{i}\right)$
+\end_inset
+
+.
+ And by the definition of 
+\begin_inset Formula $i$
+\end_inset
+
+, also 
+\begin_inset Formula $\mu\left(u_{i}\right)>\mu\left(v_{i}\right)$
+\end_inset
+
+, and thus 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\mu\left(u\right)>\mu\left(v_{i}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Finally we notice that this contradicts the operation of our algorithm.
+ Because, if 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\mu\left(u\right)>\mu\left(v_{i}\right)$
+\end_inset
+
+, then our algorithm should've chosen 
+\begin_inset Formula $u$
+\end_inset
+
+ before 
+\begin_inset Formula $v_{i}$
+\end_inset
+
+ (as we have seen, 
+\begin_inset Formula $A\cup\left\{ u\right\} $
+\end_inset
+
+ is linearly independent).
+\end_layout
+
+\begin_layout Standard
+We have reached a contradiction, which finishes our proof.
+ 
+\begin_inset Formula $\blacksquare$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Matroid
+\end_layout
+
+\end_inset
+
+Matroids
+\end_layout
+
+\begin_layout Subsection
+Properties of a Matroid
+\end_layout
+
+\begin_layout Standard
+We define matroids through their properties.
+ A matroid 
+\begin_inset Formula $M$
+\end_inset
+
+ is a pair of two entities:
+\end_layout
+
+\begin_layout Enumerate
+A set, 
+\begin_inset Formula $S$
+\end_inset
+
+, of elements.
+\end_layout
+
+\begin_layout Enumerate
+A set, 
+\begin_inset Formula $I$
+\end_inset
+
+, of subsets of 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ More specifically, 
+\begin_inset Formula $I$
+\end_inset
+
+ is a subset of the power set
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The power set
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Power Set
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Formula $P\left(S\right)$
+\end_inset
+
+, of a set 
+\begin_inset Formula $S$
+\end_inset
+
+, is defined to be the set of all the subsets of 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ The power set is usually denoted by 
+\begin_inset Formula $P\left(S\right)$
+\end_inset
+
+ or by 
+\begin_inset Formula $2^{S}$
+\end_inset
+
+.
+ For example, given a set 
+\begin_inset Formula $S=\left\{ 1,2\right\} $
+\end_inset
+
+, then 
+\begin_inset Formula $P\left(S\right)=\left\{ \emptyset,\left\{ 1\right\} ,\left\{ 2\right\} ,\left\{ 1,2\right\} \right\} $
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+ of 
+\begin_inset Formula $S$
+\end_inset
+
+: 
+\begin_inset Formula $I\subseteq P\left(S\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We denote the matroid which is composed of 
+\begin_inset Formula $S$
+\end_inset
+
+ and 
+\begin_inset Formula $I$
+\end_inset
+
+ with 
+\begin_inset Formula $M=\left(S,I\right)$
+\end_inset
+
+.
+ We require 
+\begin_inset Formula $I$
+\end_inset
+
+ to hold three properties:
+\end_layout
+
+\begin_layout Enumerate
+Must contain the empty set (
+\begin_inset Formula $\emptyset\in I$
+\end_inset
+
+ ).
+\end_layout
+
+\begin_layout Enumerate
+Must hold the 
+\emph on
+Hereditary Property.
+\end_layout
+
+\begin_layout Enumerate
+Must hold the 
+\emph on
+Augmentation Property.
+\end_layout
+
+\begin_layout Subsubsection
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Heriditary Property
+\end_layout
+
+\end_inset
+
+Heriditary Property
+\end_layout
+
+\begin_layout Standard
+We remember that 
+\begin_inset Formula $I$
+\end_inset
+
+ is a set of subsets of 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ In other words, the elements of 
+\begin_inset Formula $I$
+\end_inset
+
+ are sets themselfs.
+ If we take some set 
+\begin_inset Formula $A$
+\end_inset
+
+ in 
+\begin_inset Formula $I$
+\end_inset
+
+ (
+\begin_inset Formula $A\in I$
+\end_inset
+
+), then we can also look at subsets of 
+\begin_inset Formula $A$
+\end_inset
+
+.
+ Let's look at some subset of 
+\begin_inset Formula $A$
+\end_inset
+
+ and denote it with 
+\begin_inset Formula $B$
+\end_inset
+
+, so we have 
+\begin_inset Formula $B\subseteq A$
+\end_inset
+
+.
+ Now we can ask an interesting question - does 
+\begin_inset Formula $B\in I$
+\end_inset
+
+ hold? In other words, is 
+\begin_inset Formula $B$
+\end_inset
+
+ also an element in 
+\begin_inset Formula $I$
+\end_inset
+
+? The answer is that sometimes it is and sometimes it isn't.
+ But if it is, for all such 
+\begin_inset Formula $A$
+\end_inset
+
+'s and 
+\begin_inset Formula $B$
+\end_inset
+
+'s, then we say that 
+\begin_inset Formula $I$
+\end_inset
+
+ is 
+\emph on
+heriditary.
+\end_layout
+
+\begin_layout Paragraph
+Formal Definition
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $I$
+\end_inset
+
+ is heriditary if and only if 
+\begin_inset Formula $\forall A\in I,\forall B\subseteq A:B\in I$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+And in words - For every set 
+\begin_inset Formula $A$
+\end_inset
+
+ in 
+\begin_inset Formula $I$
+\end_inset
+
+, every subset of 
+\begin_inset Formula $A$
+\end_inset
+
+ is also in 
+\begin_inset Formula $I$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+\begin_inset Index idx
+status collapsed
+
+\begin_layout Plain Layout
+Augmentation Property
+\end_layout
+
+\end_inset
+
+Augmentation Property
+\end_layout
+
+\begin_layout Standard
+Suppose we have two subsets of 
+\begin_inset Formula $S$
+\end_inset
+
+ which are in 
+\begin_inset Formula $I$
+\end_inset
+
+: 
+\begin_inset Formula $A,B\in I$
+\end_inset
+
+.
+ And suppose that 
+\begin_inset Formula $B$
+\end_inset
+
+ contains more elements than 
+\begin_inset Formula $A$
+\end_inset
+
+.
+ Then is it possible to take some element from 
+\begin_inset Formula $B$
+\end_inset
+
+, which is not also in 
+\begin_inset Formula $A$
+\end_inset
+
+, move it to 
+\begin_inset Formula $A$
+\end_inset
+
+ (
+\series bold
+augment
+\series default
+ 
+\begin_inset Formula $A$
+\end_inset
+
+), and still remain in 
+\begin_inset Formula $I$
+\end_inset
+
+? If it's possible for all 
+\begin_inset Formula $A$
+\end_inset
+
+'s and 
+\begin_inset Formula $B$
+\end_inset
+
+'s in 
+\begin_inset Formula $I$
+\end_inset
+
+, then we say that 
+\begin_inset Formula $I$
+\end_inset
+
+ has the augmentation property.
+\end_layout
+
+\begin_layout Paragraph
+Formal Definition
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $I$
+\end_inset
+
+ has the augmentation property if and only if 
+\begin_inset Formula $\forall A,B\in I,\left|B\right|>\left|A\right|,\exists x\in B\backslash A:A\cup\left\{ x\right\} \in I$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+And in words - For all sets 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ in 
+\begin_inset Formula $I$
+\end_inset
+
+, such that 
+\begin_inset Formula $B$
+\end_inset
+
+ is bigger than 
+\begin_inset Formula $A$
+\end_inset
+
+, there exists an element 
+\begin_inset Formula $x$
+\end_inset
+
+ which is in 
+\begin_inset Formula $B$
+\end_inset
+
+ but not in 
+\begin_inset Formula $A$
+\end_inset
+
+, such that the union of 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $x$
+\end_inset
+
+ is also in 
+\begin_inset Formula $I$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subparagraph
+Note:
+\end_layout
+
+\begin_layout Standard
+We only have to find just one such 
+\begin_inset Formula $x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+The Generic Greedy Algorithm
+\end_layout
+
+\begin_layout Standard
+As was mentioned in the introduction, a generic greedy algorithm will solve
+ an optimization problem if it is defined as a matroid.
+\end_layout
+
+\begin_layout Subsection
+Examples
+\end_layout
+
+\begin_layout Subsubsection
+The Transversal
+\begin_inset Marginal
+status collapsed
+
+\begin_layout Plain Layout
+Transversality is the characterization of intersection between sets.
+\end_layout
+
+\end_inset
+
+ Matroid
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Transversal Matroid
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $C_{1},C_{2},...,C_{k}$
+\end_inset
+
+ be 
+\begin_inset Formula $k$
+\end_inset
+
+ sets of integers which comprise a disjoint union of 
+\begin_inset Formula $\left[n\right]$
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left[n\right]=\left\{ 1,2,3,...,n\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+: 
+\begin_inset Formula $C_{1}\uplus C_{2}\uplus...C_{k}=\left[n\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We denote 
+\begin_inset Formula $S=\left[n\right]$
+\end_inset
+
+, and we define 
+\begin_inset Formula $I=\left\{ A\subseteq S:\forall i=1,...,k\left|A\cap C_{i}\right|\leq c\right\} $
+\end_inset
+
+.
+ 
+\begin_inset Formula $I$
+\end_inset
+
+ Contains all the subsets of 
+\begin_inset Formula $S$
+\end_inset
+
+ that have an intersection with each 
+\begin_inset Formula $C_{i}$
+\end_inset
+
+ of at most 
+\begin_inset Formula $c$
+\end_inset
+
+ elements.
+\end_layout
+
+\begin_layout Paragraph
+Claim:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M=\left(S,I\right)$
+\end_inset
+
+ is a matroid.
+\end_layout
+
+\begin_layout Paragraph
+Proof:
+\end_layout
+
+\begin_layout Standard
+We need to prove that 
+\begin_inset Formula $I$
+\end_inset
+
+ holds each of the required three properties.
+\end_layout
+
+\begin_layout Subparagraph
+Contains the empty set:
+\end_layout
+
+\begin_layout Standard
+Suppose 
+\begin_inset Formula $A=\emptyset$
+\end_inset
+
+.
+ Obviously 
+\begin_inset Formula $A\subset S$
+\end_inset
+
+ and for each 
+\begin_inset Formula $i=1,...,k$
+\end_inset
+
+ it is evident that 
+\begin_inset Formula $\left|A\cap C_{i}\right|=\left|\emptyset\cap C_{i}\right|=0\leq c$
+\end_inset
+
+.
+ Thus 
+\begin_inset Formula $A\in I$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\blacksquare$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subparagraph
+Hereditary Property:
+\end_layout
+
+\begin_layout Standard
+We need to prove that 
+\begin_inset Formula $\forall A\in I,\forall B\subseteq A:B\in I$
+\end_inset
+
+.
+ Suppose 
+\begin_inset Formula $A\in I$
+\end_inset
+
+ and 
+\begin_inset Formula $B\subseteq A$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We need to show that 
+\begin_inset Formula $\left|B\cap C_{i}\right|\leq c$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We know that 
+\begin_inset Formula $B\subseteq A$
+\end_inset
+
+, so obviously 
+\begin_inset Formula $\left|B\right|\leq\left|A\right|$
+\end_inset
+
+, thus it is evident that 
+\begin_inset Formula $\left|B\cap C_{i}\right|\leq\left|A\cap C_{i}\right|$
+\end_inset
+
+ for every 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ But because 
+\begin_inset Formula $A\in I$
+\end_inset
+
+, we have 
+\begin_inset Formula $\left|A\cap C_{i}\right|\leq c$
+\end_inset
+
+, which means 
+\begin_inset Formula $\left|B\cap C_{i}\right|\leq\left|A\cap C_{i}\right|\leq c$
+\end_inset
+
+ for every 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ Thus 
+\begin_inset Formula $B\in I$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\blacksquare$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subparagraph
+Augmentation Property:
+\end_layout
+
+\begin_layout Standard
+We need to prove that 
+\begin_inset Formula $\forall A,B\in I,\left|B\right|>\left|A\right|,\exists x\in B\backslash A:A\cup\left\{ x\right\} \in I$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Suppose 
+\begin_inset Formula $A,B\in I$
+\end_inset
+
+ and 
+\begin_inset Formula $\left|B\right|>\left|A\right|$
+\end_inset
+
+.
+ We need to show that there is 
+\begin_inset Formula $x\in B\backslash A$
+\end_inset
+
+ such that 
+\begin_inset Formula $A\cup\left\{ x\right\} \in I$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Chapter
+Dynamic Algorithms
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Dynamic Algorithm
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Approximation Algorithms
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Approximation Algorithm
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Examples
+\end_layout
+
+\begin_layout Subsection
+Parallel Machine Online Scheduling
+\end_layout
+
+\begin_layout Standard
+We have tasks we need to perform, and several machines to perform those
+ tasks.
+ We want to assign tasks to machines in such an order that we finish all
+ the tasks as early as possible.
+\end_layout
+
+\begin_layout Paragraph
+Input:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k$
+\end_inset
+
+ - Number of machines we have.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $t_{1},t_{2},...,t_{n}$
+\end_inset
+
+ - 
+\begin_inset Formula $n$
+\end_inset
+
+ tasks, task 
+\begin_inset Formula $i$
+\end_inset
+
+ takes 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ amount of time to finish.
+\end_layout
+
+\begin_layout Paragraph
+Output:
+\end_layout
+
+\begin_layout Standard
+A function 
+\begin_inset Formula $S$
+\end_inset
+
+ which assigns tasks to machines 
+\begin_inset Formula $S:\left\{ t_{1},t_{2},...,t_{n}\right\} \rightarrow\left\{ 1,2,...,k\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Chapter
+Probabilistic Algorithms
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Probabilistic Algorithm
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Flow Networks
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Flow Network
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Motivation
+\end_layout
+
+\begin_layout Subsection
+Traffic
+\end_layout
+
+\begin_layout Standard
+Let's think of traffic.
+ We have junctions, which are connected by roads; and we have cars which
+ drive in the roads.
+ Let's take a look at the simple example depiceted in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "simple-traffic-junction"
+
+\end_inset
+
+.
+ In 
+\emph on
+Road A
+\emph default
+ there are two lanes, but in 
+\emph on
+Road B
+\emph default
+ there is only one lane.
+ Obviously, if we use both lanes of 
+\emph on
+Road A, 
+\emph default
+very quickly there will be a traffic jam; because 
+\emph on
+Road B
+\emph default
+ can't contain the amount of traffic arriving from 
+\emph on
+Road A
+\emph default
+.
+ In order to avoid a traffic jam, we would have to limit the use of 
+\emph on
+Road A
+\emph default
+ to just one lane.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Figures/Flow Networks/Motivation/Traffic/Simple Roads.pdf
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Traffic in a simple junction
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "simple-traffic-junction"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now let's look at it from the point of view of the junction.
+ From the left, there is incoming traffic from both lanes of 
+\emph on
+Road A
+\emph default
+, and from the right there is outgoing traffic to the single lane of 
+\emph on
+Road B
+\emph default
+.
+ If 
+\emph on
+Road B
+\emph default
+ can't remove traffic from the junction at the same rate that traffic is
+ arriving to the junction from 
+\emph on
+Road A
+\emph default
+, then the junction would become congested.
+\end_layout
+
+\begin_layout Standard
+This simple analysis on this simple problem brought us to the conclusion
+ that if we want to avoid traffic, we can use only one of the lanes of 
+\emph on
+Road A
+\emph default
+.
+ But real world problems are usually much more complex.
+ Consider the situation in which we have several junctions, each junction
+ has several incoming and outgoing roads, and each road can have one or
+ more lanes (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "complex traffic"
+
+\end_inset
+
+).
+ How would we find the best usage of each road such that none of the junctions
+ would be congested?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Figures/Flow Networks/Motivation/Traffic/Complicated Traffic.gv
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+The width of the road indicates it's capacity (number of lanes).
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Traffic on many junctions and roads.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "complex traffic"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Fast Fourier Transform
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Fast Fourier Transform
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset index_print
+LatexCommand printindex
+type "idx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList figure
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
