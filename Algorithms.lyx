@@ -8797,6 +8797,13 @@ Some lemmas:
 \end_inset
 
 .
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:delta_i_i+1"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Proof
@@ -9145,6 +9152,13 @@ For every
 \end_inset
 
  iterations.
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:For-every-at-most-O(V)"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Proof
@@ -9220,6 +9234,141 @@ Because
 \end_inset
 
 .
+ This means that in the 
+\begin_inset Formula $k$
+\end_inset
+
+'th iteration 
+\begin_inset Formula $\delta_{k}\left(u\right)=\delta_{k}\left(v\right)+1$
+\end_inset
+
+.
+ Also, because 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ is an edge in the augmentation path of the 
+\begin_inset Formula $i$
+\end_inset
+
+'th iteration we have 
+\begin_inset Formula $\delta_{i}\left(v\right)=\delta_{i}\left(u\right)+1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+From lemma 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:delta_i_i+1"
+
+\end_inset
+
+ we have 
+\begin_inset Formula $\delta_{k}\left(v\right)\geq\delta_{i}\left(v\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\delta_{j}\left(u\right)\geq\delta_{k}\left(u\right)$
+\end_inset
+
+.
+ Thus 
+\begin_inset Formula $\delta_{j}\left(u\right)\geq\delta_{k}\left(u\right)=\delta_{k}\left(v\right)+1\geq\delta_{i}\left(v\right)+1=\delta_{i}\left(u\right)+1+1=\delta_{i}\left(u\right)+2$
+\end_inset
+
+.
+ Finally we obtained 
+\begin_inset Formula $\delta_{j}\left(u\right)\geq\delta_{i}\left(u\right)+2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Obviously 
+\begin_inset Formula $\delta\left(u\right)$
+\end_inset
+
+ is bounded by 
+\begin_inset Formula $\left|V\right|$
+\end_inset
+
+ (for any iteration, as long as 
+\begin_inset Formula $\delta\left(u\right)<\infty$
+\end_inset
+
+).
+ Because 
+\begin_inset Formula $\delta\left(u\right)$
+\end_inset
+
+ increases by at least 2 between any two iterations in which 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ is critical, we conclude that 
+\begin_inset Formula $\left(u,v\right)$
+\end_inset
+
+ can be critical at most 
+\begin_inset Formula $\frac{\left|V\right|}{2}$
+\end_inset
+
+ times, which is 
+\begin_inset Formula $O\left(\left|V\right|\right)$
+\end_inset
+
+, as needed.
+\end_layout
+
+\begin_layout Corollary
+Because there are at most 
+\begin_inset Formula $2\left|E\right|$
+\end_inset
+
+ edges in each residual network, and because each edge can be critical 
+\begin_inset Formula $O\left(\left|V\right|\right)$
+\end_inset
+
+ times (by lemma 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:For-every-at-most-O(V)"
+
+\end_inset
+
+), we conclude that the algorithm performs 
+\begin_inset Formula $O\left(\left|E\right|\cdot\left|V\right|\right)$
+\end_inset
+
+ iterations.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "cor:Because-there-are-O(EV)-corollary"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+With corollary 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cor:Because-there-are-O(EV)-corollary"
+
+\end_inset
+
+ we complete the proof.
+ 
+\begin_inset Formula $\blacksquare$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
