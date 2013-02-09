@@ -88,7 +88,37 @@ Eyal Arubas
 \end_layout
 
 \begin_layout Standard
-This book is based on an algorithms course I took in 2012 at the Hebrew
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Warning:
+\end_layout
+
+\begin_layout Plain Layout
+This is a rough, incomplete and inaccurate (probably with many typos) draft.
+ Use at your own risk.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This notebook is based on an algorithms course I took in 2012 at the Hebrew
  University of Jerusalem, Israel.
  The material is based on my notes from the lectures of 
 \begin_inset CommandInset href
@@ -98,23 +128,7 @@ target "http://www.cs.huji.ac.il/~salex/"
 
 \end_inset
 
-, as well as my readings of 
-\begin_inset CommandInset href
-LatexCommand href
-name "Introduction To Algorithms (T.H. Corman)"
-target "http://mitpress.mit.edu/books/introduction-algorithms"
-
-\end_inset
-
-, 
-\begin_inset CommandInset href
-LatexCommand href
-name "Algorithms (U.V. Vazirani)"
-target "http://www.cs.berkeley.edu/~vazirani/algorithms.html"
-
-\end_inset
-
-, entries in 
+, as well as some entries in 
 \begin_inset CommandInset href
 LatexCommand href
 name "Wikipedia"
@@ -126,7 +140,7 @@ target "http://www.wikipedia.com/"
 \end_layout
 
 \begin_layout Standard
-I wrote this book because I find the subject interesting, and it helped
+I wrote this notebook because I find the subject interesting, and it helped
  me prepare for my exam.
  Hopefully it will help whoever is reading it as well.
 \end_layout
@@ -163,7 +177,7 @@ The structure of the book is such that each chapter will begin with several
  These examples will demonstrate a situation in which we need to reach a
  solution by solving a problem of a certain type.
  Then in the rest of the chapter we will discuss methods for solving this
- type of problems.
+ type of problems, as well as many examples.
  Each chapter is independent, so you can just jump directly to a subject
  of your choice.
 \end_layout
@@ -212,330 +226,6 @@ Greedy Algorithm
 \end_layout
 
 \begin_layout Section
-Motivation
-\end_layout
-
-\begin_layout Subsection
-Robbing a Bank
-\begin_inset CommandInset label
-LatexCommand label
-name "sub:Robbing-a-Bank"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Let's say we are bank robbers, and we want to maximize our profit.
- The problem is that we brought just one bag, which can contain up to a
- 100 units of stolen items.
- We rob the bank at night, so it's empty of people, and we have enough time
- to think which items we want to take.
-\end_layout
-
-\begin_layout Standard
-The inventory of the bank is as follows:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="3">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Item
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Amount
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Total Worth
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Gold
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1000
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Silver
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-50
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1500
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Bronze
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-100
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2000
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-As the robbers, our task is to figure out how many units of Gold, Silver
- and Bronze we put in the bag, such that our profit is maximal.
- In other words, if we take 
-\begin_inset Formula $x$
-\end_inset
-
- units of Gold, 
-\begin_inset Formula $y$
-\end_inset
-
- units of Silver and 
-\begin_inset Formula $z$
-\end_inset
-
- units of Bronze, such that 
-\begin_inset Formula $x+y+z=100$
-\end_inset
-
-, what would be the best choice of 
-\begin_inset Formula $x$
-\end_inset
-
-, 
-\begin_inset Formula $y$
-\end_inset
-
- and 
-\begin_inset Formula $z$
-\end_inset
-
-?
-\end_layout
-
-\begin_layout Standard
-For example:
-\end_layout
-
-\begin_layout Itemize
-If we take just 100 units of bronze (
-\begin_inset Formula $x=0,y=0,z=100$
-\end_inset
-
-), our profit would be 2000.
-\end_layout
-
-\begin_layout Itemize
-If we take 50 units of Bronze and 50 units of Silver (
-\begin_inset Formula $x=0,y=50,z=50$
-\end_inset
-
-), our profit would be 2500.
-\end_layout
-
-\begin_layout Itemize
-If we take 90 units of Bronze and 10 units of Silver (
-\begin_inset Formula $x=10,y=0,z=90$
-\end_inset
-
-), our profit would be 2800.
-\end_layout
-
-\begin_layout Standard
-Since we are robbers, we are naturally greedy, so we decide to take as much
- as possible from the more expensive items first.
- We make the following choice:
-\end_layout
-
-\begin_layout Itemize
-10 units of Gold, 50 units of Silver, and fill the rest of the bag with
- the least expensive item - 40 units of Bronze (
-\begin_inset Formula $x=10,y=50,z=40$
-\end_inset
-
-).
- In that case our profit is 3300.
-\end_layout
-
-\begin_layout Standard
-As we will later learn to prove, this is the maximal possible profit.
-\end_layout
-
-\begin_layout Section
-Introduction
-\end_layout
-
-\begin_layout Standard
-As we have seen, certain problems can be solved by employing a greedy strategy.
- By considering what is best 
-\series bold
-now
-\series default
-, without regarding the consequences 
-\series bold
-later
-\series default
-, we can reach an optimal solution.
- Obviously not all problems can be solved optimally by this approach.
- For most problems, we can't just ignore the consequences of our current
- choices and we must look at the problem with a global view.
- So in order to justify the use of the greedy approach, we want to be able
- to identify the problems for which an optimal solution is guarantied by
- this approach.
-\end_layout
-
-\begin_layout Standard
-Apparantly, all problems which can be solved greedily exhibit certain mathematic
-al characteristics.
- We call the mathematical entities which adhere to these characteristics
- 
-\begin_inset Quotes eld
-\end_inset
-
-Matroids
-\begin_inset Quotes erd
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-The characteristics of matroids make them very relevant to optimization
- problems, which can be solved with greedy algorithms.
- We will later see that by taking an optimization problem and finding a
- matroid which describes it, we can solve it optimally with a generic greedy
- algorithm.
- The challange, for most problems, will be to formulate the problem in such
- a way that it will correspond to a matroid.
-\end_layout
-
-\begin_layout Standard
-Greedy algorithms are a somewhat unique family of algorithms, in the sense
- that:
-\end_layout
-
-\begin_layout Enumerate
-They solve certain optimization problems.
- Meaning, by using the greedy algorithm, we can find the optimal solution
- to the problem.
-\end_layout
-
-\begin_layout Enumerate
-We can prove it.
-\end_layout
-
-\begin_layout Standard
-The fact that we can prove that greedy algorithms solve certain optimization
- problems, is not trivial, and is thanks to matroids.
-\end_layout
-
-\begin_layout Standard
-But before discussing Matroids, we first show several optimization problems
- and solve them with 
-\emph on
-exchange lemmas
-\emph default
-.
- Then a mathematical discussion about matroids will be presented, and will
- seem a bit unrelated to algorithms.
- After we complete this discussion, another discussion will be made about
- the equivalency of matroids to optimization problems, which will be demonstrate
-d through more examples.
- In the last part of the chapter we will see the full process of defining
- a problem, transforming it into a matroid and finding an optimal solution
- through a generic greedy algorithm.
-\end_layout
-
-\begin_layout Section
 Exchange Lemmas
 \begin_inset Index idx
 status open
@@ -555,10 +245,13 @@ ion problem.
  If it indeed does solve the problem, we want to be able to prove it.
  Usually we do it by saying that if some optimal solution to the problem
  exists, then it will coincide with the solution of our algorithm.
- Our goal, then, is to show that we can take the (currently unknown) optimal
+ Alternatively, we can say that given any other solution to the problem,
+ our solution will be better.
+ Our goal, then, is to show that we can take the other (optimal or not)
  solution (which is usually not unique), manipulate it without damaging
- its optimality, and reach the solution given by our algorithm; thus showing
- that it, too, is an optimal solution.
+ its optimality, if it's optimal, or make it better if it's not optimal;
+ and reach the solution given by our algorithm; thus showing that it, too,
+ is an optimal solution.
 \end_layout
 
 \begin_layout Standard
@@ -568,19 +261,18 @@ exchange lemmas.
 
 \emph default
  What these lemmas actually do is show that we can manipulate the uknown
- optimal solution, i.e.
+ solution, i.e.
  
 \emph on
 exchange
 \emph default
- part of it with part of our own solution, and still remain with an optimal
- solution.
+ part of it with part of our own solution.
  If we can show that eventually we can replace the 
 \series bold
 entire
 \series default
- uknown optimal solution with our own solution, and still remain optimal,
- then we have shown that our solution is as good and as optimal.
+ uknown solution with our own solution, and be optimal, then we have shown
+ that our solution is as good and as optimal as any other.
 \end_layout
 
 \begin_layout Standard
@@ -727,6 +419,10 @@ We propose a greedy algorithm which yields an optimal solution to this problem.
  We notice that greediness is the most natural approach in this case, since
  our goal is to maximal the value of the knapsack, and we can (intuitivly)
  achieve that by grabing as much as possible from the most valued items.
+\end_layout
+
+\begin_layout Standard
+[TODO]
 \end_layout
 
 \begin_layout Subsection
@@ -1780,8 +1476,12 @@ The Generic Greedy Algorithm
 \end_layout
 
 \begin_layout Standard
-As was mentioned in the introduction, a generic greedy algorithm will solve
- an optimization problem if it is defined as a matroid.
+A generic greedy algorithm will solve an optimization problem if it is defined
+ as a matroid.
+\end_layout
+
+\begin_layout Standard
+[TODO]
 \end_layout
 
 \begin_layout Subsection
@@ -2039,6 +1739,10 @@ Suppose
 \end_inset
 
  .
+\end_layout
+
+\begin_layout Standard
+[TODO]
 \end_layout
 
 \begin_layout Chapter
@@ -7075,185 +6779,6 @@ status open
 
 \begin_layout Plain Layout
 Flow Network
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Motivation
-\end_layout
-
-\begin_layout Subsection
-Traffic
-\end_layout
-
-\begin_layout Standard
-Let's think of traffic.
- We have junctions, which are connected by roads; and we have cars which
- drive in the roads.
- Let's take a look at the simple example depiceted in figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "simple-traffic-junction"
-
-\end_inset
-
-.
- In 
-\emph on
-Road A
-\emph default
- there are two lanes, but in 
-\emph on
-Road B
-\emph default
- there is only one lane.
- Obviously, if we use both lanes of 
-\emph on
-Road A, 
-\emph default
-very quickly there will be a traffic jam; because 
-\emph on
-Road B
-\emph default
- can't contain the amount of traffic arriving from 
-\emph on
-Road A
-\emph default
-.
- In order to avoid a traffic jam, we would have to limit the use of 
-\emph on
-Road A
-\emph default
- to just one lane.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement h
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename Figures/Flow Networks/Motivation/Traffic/Simple Roads.pdf
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Traffic in a simple junction
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "simple-traffic-junction"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Now let's look at it from the point of view of the junction.
- From the left, there is incoming traffic from both lanes of 
-\emph on
-Road A
-\emph default
-, and from the right there is outgoing traffic to the single lane of 
-\emph on
-Road B
-\emph default
-.
- If 
-\emph on
-Road B
-\emph default
- can't remove traffic from the junction at the same rate that traffic is
- arriving to the junction from 
-\emph on
-Road A
-\emph default
-, then the junction would become congested.
-\end_layout
-
-\begin_layout Standard
-This simple analysis on this simple problem brought us to the conclusion
- that if we want to avoid traffic, we can use only one of the lanes of 
-\emph on
-Road A
-\emph default
-.
- But real world problems are usually much more complex.
- Consider the situation in which we have several junctions, each junction
- has several incoming and outgoing roads, and each road can have one or
- more lanes (figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "complex traffic"
-
-\end_inset
-
-).
- How would we find the best usage of each road such that none of the junctions
- would be congested?
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement h
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Graphics
-	filename Figures/Flow Networks/Motivation/Traffic/Complicated Traffic.gv
-	width 100text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-The width of the road indicates it's capacity (number of lanes).
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Traffic on many junctions and roads.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "complex traffic"
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
