@@ -118,7 +118,7 @@ This is a rough, incomplete and inaccurate (probably with many typos) draft.
 \end_layout
 
 \begin_layout Standard
-This book is based on an algorithms course I took in 2012 at the Hebrew
+This notebook is based on an algorithms course I took in 2012 at the Hebrew
  University of Jerusalem, Israel.
  The material is based on my notes from the lectures of 
 \begin_inset CommandInset href
@@ -128,23 +128,7 @@ target "http://www.cs.huji.ac.il/~salex/"
 
 \end_inset
 
-, as well as my readings of 
-\begin_inset CommandInset href
-LatexCommand href
-name "Introduction To Algorithms (T.H. Corman)"
-target "http://mitpress.mit.edu/books/introduction-algorithms"
-
-\end_inset
-
-, 
-\begin_inset CommandInset href
-LatexCommand href
-name "Algorithms (U.V. Vazirani)"
-target "http://www.cs.berkeley.edu/~vazirani/algorithms.html"
-
-\end_inset
-
-, entries in 
+, as well as some entries in 
 \begin_inset CommandInset href
 LatexCommand href
 name "Wikipedia"
@@ -156,7 +140,7 @@ target "http://www.wikipedia.com/"
 \end_layout
 
 \begin_layout Standard
-I wrote this book because I find the subject interesting, and it helped
+I wrote this notebook because I find the subject interesting, and it helped
  me prepare for my exam.
  Hopefully it will help whoever is reading it as well.
 \end_layout
@@ -193,7 +177,7 @@ The structure of the book is such that each chapter will begin with several
  These examples will demonstrate a situation in which we need to reach a
  solution by solving a problem of a certain type.
  Then in the rest of the chapter we will discuss methods for solving this
- type of problems.
+ type of problems, as well as many examples.
  Each chapter is independent, so you can just jump directly to a subject
  of your choice.
 \end_layout
@@ -8909,6 +8893,170 @@ reference "cor:Because-there-are-O(EV)-corollary"
 \begin_inset Formula $\blacksquare$
 \end_inset
 
+
+\end_layout
+
+\begin_layout Section
+Examples
+\end_layout
+
+\begin_layout Subsection
+Maximal matching in a bipartite graph
+\end_layout
+
+\begin_layout Standard
+We have an undirected bipartite graph 
+\begin_inset Formula $G=\left(L,R,E\right)$
+\end_inset
+
+, and we want to find a maximal matching.
+\end_layout
+
+\begin_layout Subsubsection
+Algorithm which uses a flow network
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Enumerate
+Construct a flow network 
+\begin_inset Formula $G=\left(V^{'},E^{'},C,s,t\right)$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $V^{'}=L\cup R\cup\left\{ s,t\right\} $
+\end_inset
+
+ (with 
+\begin_inset Formula $s$
+\end_inset
+
+ and 
+\begin_inset Formula $t$
+\end_inset
+
+ as some artificial vertices).
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $E^{'}=\left\{ \left(s,v\right):v\in L\right\} \cup\left\{ \left(v,t\right):v\in R\right\} \cup\vec{E}$
+\end_inset
+
+ (where 
+\begin_inset Formula $\vec{E}$
+\end_inset
+
+ is a set of the edges in 
+\begin_inset Formula $E$
+\end_inset
+
+ directed from 
+\begin_inset Formula $L$
+\end_inset
+
+ to 
+\begin_inset Formula $R$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\forall e\in E^{'}:C\left(e\right)=1$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Find the maximal flow on the network.
+\end_layout
+
+\begin_layout Enumerate
+Return all the original edges on which the flow is 1: 
+\begin_inset Formula $M=\left\{ e\in\vec{E}|f\left(e\right)=1\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Maximal matching in a bipartite graph (with flow network)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Proof of legality
+\end_layout
+
+\begin_layout Standard
+We need to show that the solution of the algorithm (
+\begin_inset Formula $M$
+\end_inset
+
+) is indeed a legal matching.
+\end_layout
+
+\begin_layout Standard
+We prove by negation.
+ Assume there is a vertex 
+\begin_inset Formula $v$
+\end_inset
+
+ which touces more than one edge in 
+\begin_inset Formula $M$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+If 
+\begin_inset Formula $v\in R$
+\end_inset
+
+, then it has one outgoing edge 
+\begin_inset Formula $\left(v,t\right)$
+\end_inset
+
+ which has capacity 
+\begin_inset Formula $C\left(v,t\right)=1$
+\end_inset
+
+.
+ Because all the capacities are integers...
+\end_layout
+
+\begin_layout Standard
+[TODO]
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
