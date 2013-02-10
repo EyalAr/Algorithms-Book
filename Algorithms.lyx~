@@ -9056,6 +9056,49 @@ If
 [TODO]
 \end_layout
 
+\begin_layout Subsection
+Roads and advertisements
+\end_layout
+
+\begin_layout Standard
+A town has a system of 1-way or 2-way roads and junctions.
+ We denote 
+\begin_inset Formula $A=\left(a_{1},a_{2},...,a_{n}\right)$
+\end_inset
+
+ the set of junctions.
+ 
+\begin_inset Formula $E\subseteq A$
+\end_inset
+
+ is a subset of entrance junctions, through which one can enter the town.
+ We have a store on one of the junctions which we want to advertise.
+ We want our advertisements to appear on at least one junction on any path
+ from one of the entrance junctions to our store's junction.
+ The cost of putting an advertisement on junction 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+ is 
+\begin_inset Formula $s_{i}$
+\end_inset
+
+.
+ Our goal is to find a subset of the junctions 
+\begin_inset Formula $A^{'}\subseteq A$
+\end_inset
+
+ that satisfies this condition, and that has a minimal cost (minimize 
+\begin_inset Formula $\sum_{a_{i}\in A^{'}}s_{i}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsubsection
+Algorithm which uses a flow network
+\end_layout
+
 \begin_layout Standard
 
 \end_layout
@@ -9069,6 +9112,643 @@ status open
 Fast Fourier Transform
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Proof that FFT solves DFT
+\end_layout
+
+\begin_layout Subsection
+Denotations and definitions
+\end_layout
+
+\begin_layout Itemize
+Coefficients representation of a polynomial: The vector which represents
+ the polynomial in the monomial basis 
+\begin_inset Formula $1,x,x^{2},...,x^{n-1}$
+\end_inset
+
+ is called the 
+\emph on
+coefficients representation
+\emph default
+.
+ If we have coefficients representation 
+\begin_inset Formula $\left(a_{0},a_{1},...,a_{n-1}\right)$
+\end_inset
+
+ then the polynomial is given by 
+\begin_inset Formula $p\left(x\right)=\sum_{i=0}^{n-1}a_{i}x^{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Values representation of a polynomial: Given 
+\begin_inset Formula $n$
+\end_inset
+
+ points 
+\begin_inset Formula $x_{0},x_{1},...,x_{n-1}$
+\end_inset
+
+, the values of the polynomial in these points (
+\begin_inset Formula $\left(p\left(x_{0}\right),p\left(x_{1}\right),...,p\left(x_{n-1}\right)\right)$
+\end_inset
+
+) is called the 
+\emph on
+values representation
+\emph default
+ of the polynomial.
+ The vector of these values is in the Lagrange basis 
+\begin_inset Formula $L_{0}\left(x\right),L_{1}\left(x\right),...,L_{n-1}\left(x\right)$
+\end_inset
+
+, where 
+\begin_inset Formula $L_{i}\left(x\right)=\frac{\left(x-x_{0}\right)\cdot...\cdot\left(x-x_{i-1}\right)\cdot\left(x-x_{i+1}\right)\cdot...\cdot\left(x-x_{n-1}\right)}{\left(x_{i}-x_{0}\right)\cdot...\cdot\left(x_{i}-x_{i-1}\right)\cdot\left(x_{i}-x_{i+1}\right)\cdot...\cdot\left(x_{i}-x_{n-1}\right)}$
+\end_inset
+
+.
+ The polynomial is given by 
+\begin_inset Formula $p\left(x\right)=\sum_{i=0}^{n-1}p\left(x_{i}\right)L_{i}\left(x\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\omega_{n}$
+\end_inset
+
+ - primitive root of unity of order 
+\begin_inset Formula $n$
+\end_inset
+
+: 
+\begin_inset Formula $\omega_{n}=e^{\frac{2\pi i}{n}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $M$
+\end_inset
+
+ - the Vandermonde matrix which we use for the basis transformation from
+ the monomial basis to the Lagrange basis.
+ If the values representation of the polynomial is needed on points 
+\begin_inset Formula $x_{0},x_{1},...,x_{n-1}$
+\end_inset
+
+, then 
+\begin_inset Formula $M=\left(\begin{array}{cccc}
+x_{0}^{0} & x_{0}^{1} & \cdots & x_{0}^{n-1}\\
+x_{1}^{0} & x_{1}^{1} & \cdots & x_{1}^{n-1}\\
+\vdots & \vdots & \ddots & \vdots\\
+x_{n-1}^{0} & x_{n-1}^{1} & \cdots & x_{n-1}^{n-1}
+\end{array}\right)=\left(x_{i}^{j}\right)_{i,j=0}^{n-1}$
+\end_inset
+
+.
+ And now 
+\begin_inset Formula $\left(\begin{array}{c}
+p\left(x_{0}\right)\\
+p\left(x_{1}\right)\\
+\vdots\\
+p\left(x_{n-1}\right)
+\end{array}\right)=M\left(\begin{array}{c}
+a_{0}\\
+a_{1}\\
+\vdots\\
+a_{n-1}
+\end{array}\right)$
+\end_inset
+
+.
+ If we choose the points to be the roots of unity of order 
+\begin_inset Formula $n$
+\end_inset
+
+, 
+\begin_inset Formula $1,\omega_{n},\omega_{n}^{2},...,\omega_{n}^{n-1}$
+\end_inset
+
+, then we have 
+\begin_inset Formula $M=\left(\left(\omega_{n}\right)^{i\cdot j}\right)_{i,j=0}^{n-1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $M^{-1}$
+\end_inset
+
+ - the inverse Vandermonde matrix which we use for the basis transformation
+ from the Lagrange basis to the monomial basis.
+ If we choose the points to be the roots of unity of order 
+\begin_inset Formula $n$
+\end_inset
+
+, 
+\begin_inset Formula $1,\omega_{n},\omega_{n}^{2},...,\omega_{n}^{n-1}$
+\end_inset
+
+, then we have 
+\begin_inset Formula $M^{-1}=\frac{1}{n}\left(\left(\omega_{n}\right)^{-i\cdot j}\right)_{i,j=0}^{n-1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+The lemma
+\end_layout
+
+\begin_layout Standard
+Given a coefficients representation 
+\begin_inset Formula $\left(\begin{array}{c}
+a_{0}\\
+\vdots\\
+a_{n-1}
+\end{array}\right)$
+\end_inset
+
+ we want to calculate the corresponding values representation 
+\series bold
+on the roots of unity
+\series default
+ 
+\begin_inset Formula $\left(\begin{array}{c}
+p\left(\left(w_{n}\right)^{0}\right)\\
+p\left(\left(w_{n}\right)^{1}\right)\\
+\vdots\\
+p\left(\left(w_{n}\right)^{n-1}\right)
+\end{array}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We already know that, given the corresponding Vandermonde matrix, 
+\begin_inset Formula $\left(\begin{array}{c}
+p\left(\left(w_{n}\right)^{0}\right)\\
+p\left(\left(w_{n}\right)^{1}\right)\\
+\vdots\\
+p\left(\left(w_{n}\right)^{n-1}\right)
+\end{array}\right)=M\left(\begin{array}{c}
+a_{0}\\
+a_{1}\\
+\vdots\\
+a_{n-1}
+\end{array}\right)$
+\end_inset
+
+.
+ But this is a lengthy calculation - multiplying a matrix with a vector
+ is 
+\begin_inset Formula $O\left(n^{2}\right)$
+\end_inset
+
+.
+ We want to do this in 
+\begin_inset Formula $O\left(n\log n\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We denote the matrix 
+\begin_inset Formula $M$
+\end_inset
+
+ with 
+\begin_inset Formula $DFT_{n}$
+\end_inset
+
+ and 
+\begin_inset Formula $M^{-1}$
+\end_inset
+
+ with 
+\begin_inset Formula $DFT_{n}^{-1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma
+We can make the calculation shorter with the following recurrsion formula:
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:DFT_Lemma"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Formula $DFT_{n}\left(\begin{array}{c}
+a_{0}\\
+a_{1}\\
+\vdots\\
+a_{n-1}
+\end{array}\right)=\left(\begin{array}{c}
+DFT_{\frac{n}{2}}\left(\begin{array}{c}
+a_{0}\\
+a_{2}\\
+\vdots\\
+a_{n-2}
+\end{array}\right)\\
+DFT_{\frac{n}{2}}\left(\begin{array}{c}
+a_{0}\\
+a_{2}\\
+\vdots\\
+a_{n-2}
+\end{array}\right)
+\end{array}\right)+\left(\begin{array}{c}
+\left(w_{n}\right)^{0}\\
+\left(w_{n}\right)^{1}\\
+\vdots\\
+\left(w_{n}\right)^{n-1}
+\end{array}\right)\cdot\left(\begin{array}{c}
+DFT_{\frac{n}{2}}\left(\begin{array}{c}
+a_{1}\\
+a_{3}\\
+\vdots\\
+a_{n-1}
+\end{array}\right)\\
+DFT_{\frac{n}{2}}\left(\begin{array}{c}
+a_{1}\\
+a_{3}\\
+\vdots\\
+a_{n-1}
+\end{array}\right)
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+(with the last product 
+\begin_inset Formula $\cdot$
+\end_inset
+
+ as an element-by-element product).
+\end_layout
+
+\begin_layout Remark
+Lemma 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:DFT_Lemma"
+
+\end_inset
+
+ works for any 
+\begin_inset Formula $n$
+\end_inset
+
+ (the order of the roots of unity) which is a power of 
+\begin_inset Formula $2$
+\end_inset
+
+.
+ But this can always be arranged by padding the coefficients representation
+ of the polynomial with zeros in the end.
+\end_layout
+
+\begin_layout Subsection
+The proof
+\end_layout
+
+\begin_layout Standard
+We will now prove lemma 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:DFT_Lemma"
+
+\end_inset
+
+.
+ We do this by showing that the vectors on both sides of the equation are
+ equal on all indices.
+\end_layout
+
+\begin_layout Standard
+We denote 
+\begin_inset Formula $m=\frac{n}{2}$
+\end_inset
+
+ (remember 
+\begin_inset Formula $n$
+\end_inset
+
+ is a power of 
+\begin_inset Formula $2$
+\end_inset
+
+), 
+\begin_inset Formula $\omega$
+\end_inset
+
+ as the primitive root of unity of order 
+\begin_inset Formula $n$
+\end_inset
+
+ and 
+\begin_inset Formula $\eta$
+\end_inset
+
+ as the primitive root of unity of order 
+\begin_inset Formula $m$
+\end_inset
+
+.
+ Notice that 
+\begin_inset Formula $\eta=\omega^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We also denote
+\begin_inset Formula $M=DFT_{n}=\left(\omega^{a\cdot b}\right)_{a,b=0}^{n-1}$
+\end_inset
+
+ and 
+\begin_inset Formula $L=DFT_{m}=\left(\eta^{a\cdot b}\right)_{a,b=0}^{m-1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We will now examine the 
+\begin_inset Formula $k$
+\end_inset
+
+'th element on the vectors in both sides of the equation.
+\end_layout
+
+\begin_layout Paragraph
+Case 1 - 
+\begin_inset Formula $0\leq k\leq m-1$
+\end_inset
+
+ (
+\begin_inset Formula $0\leq k\leq\frac{n}{2}-1$
+\end_inset
+
+):
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $DFT_{n}\left(\begin{array}{c}
+a_{0}\\
+a_{1}\\
+\vdots\\
+a_{n-1}
+\end{array}\right)$
+\end_inset
+
+ in the 
+\begin_inset Formula $k$
+\end_inset
+
+'th element is given by 
+\begin_inset Formula $\sum_{t=0}^{n-1}\left[M\right]_{k,t}\cdot a_{t}=\sum_{t=0}^{n-1}\omega^{k\cdot t}\cdot a_{t}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We can decompose this expression as follows:
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\sum_{t=0}^{n-1}\omega^{k\cdot t}\cdot a_{t}=\underset{even\, t's}{\underbrace{\sum}}\omega^{k\cdot t}\cdot a_{t}+\underset{odd\, t's}{\underbrace{\sum}}\omega^{k\cdot t}\cdot a_{t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\underset{even\, t's}{\underbrace{\sum}}\omega^{k\cdot t}\cdot a_{t}=a_{0}+\omega^{2k}a_{2}+\omega^{4k}a_{4}+...+\omega^{\left(n-2\right)k}a_{n-2}=a_{0}+\eta^{k}a_{2}+\eta^{2k}a_{4}+...+\eta^{\left(m-1\right)k}a_{n-2}=\sum_{t=0}^{m-1}\eta^{k\cdot t}\cdot a_{2t}=\sum_{t=0}^{m-1}\left[L\right]_{k,t}\cdot a_{2t}$
+\end_inset
+
+, which is precisely the 
+\begin_inset Formula $k$
+\end_inset
+
+'th element in 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\left(\begin{array}{c}
+DFT_{\frac{n}{2}}\left(\begin{array}{c}
+a_{0}\\
+a_{2}\\
+\vdots\\
+a_{n-2}
+\end{array}\right)\\
+DFT_{\frac{n}{2}}\left(\begin{array}{c}
+a_{0}\\
+a_{2}\\
+\vdots\\
+a_{n-2}
+\end{array}\right)
+\end{array}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\underset{odd\, t's}{\underbrace{\sum}}\omega^{k\cdot t}\cdot a_{t}=\omega^{k}a_{1}+\omega^{3k}a_{3}+\omega^{5k}a_{5}+...+\omega^{\left(n-1\right)k}a_{n-1}=\omega^{k}\left(a_{1}+\omega^{2k}a_{3}+\omega^{4k}a_{5}+...+\omega^{\left(n-2\right)k}a_{n-1}\right)=\omega^{k}\left(a_{1}+\eta^{k}a_{3}+\eta^{2k}a_{5}+...+\eta^{\left(m-1\right)k}a_{n-1}\right)=\omega^{k}\left(\sum_{t=0}^{m-1}\eta^{k\cdot t}\cdot a_{2t+1}\right)=\omega^{k}\sum_{t=0}^{m-1}\left[L\right]_{k,t}\cdot a_{2t+1}$
+\end_inset
+
+ which is precisely the 
+\begin_inset Formula $k$
+\end_inset
+
+'th element in 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\left(\begin{array}{c}
+\left(w_{n}\right)^{0}\\
+\left(w_{n}\right)^{1}\\
+\vdots\\
+\left(w_{n}\right)^{n-1}
+\end{array}\right)\cdot\left(\begin{array}{c}
+DFT_{\frac{n}{2}}\left(\begin{array}{c}
+a_{1}\\
+a_{3}\\
+\vdots\\
+a_{n-1}
+\end{array}\right)\\
+DFT_{\frac{n}{2}}\left(\begin{array}{c}
+a_{1}\\
+a_{3}\\
+\vdots\\
+a_{n-1}
+\end{array}\right)
+\end{array}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Finally we have that the 
+\begin_inset Formula $k$
+\end_inset
+
+'th element in the left side of the equation equals the 
+\begin_inset Formula $k$
+\end_inset
+
+'th element in the right side of the equation.
+\end_layout
+
+\begin_layout Paragraph
+Case 2 - 
+\begin_inset Formula $m\leq k\leq2m-1$
+\end_inset
+
+ (
+\begin_inset Formula $\frac{n}{2}\leq k\leq n-1$
+\end_inset
+
+):
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Again, 
+\begin_inset Formula $DFT_{n}\left(\begin{array}{c}
+a_{0}\\
+a_{1}\\
+\vdots\\
+a_{n-1}
+\end{array}\right)$
+\end_inset
+
+ in the 
+\begin_inset Formula $k$
+\end_inset
+
+'th element is given by 
+\begin_inset Formula $\sum_{t=0}^{n-1}\left[M\right]_{k,t}\cdot a_{t}=\sum_{t=0}^{n-1}\omega^{k\cdot t}\cdot a_{t}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Now we can write 
+\begin_inset Formula $k=m+s$
+\end_inset
+
+ and 
+\begin_inset Formula $0\leq s\leq m-1$
+\end_inset
+
+.
+ We notice that 
+\begin_inset Formula $\eta^{k}=\eta^{m+s}=\eta^{m}\cdot\eta^{s}=1\cdot\eta^{s}=\eta^{s}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We can now repeat a similar analysis as in case 1 and reach the conclusion
+ that the 
+\begin_inset Formula $k$
+\end_inset
+
+'th element in the left side of the equation equals the 
+\begin_inset Formula $\left(m+s\right)$
+\end_inset
+
+'th (or, 
+\begin_inset Formula $k$
+\end_inset
+
+'th) element in the right side of the equation.
+\end_layout
+
+\begin_layout Standard
+Thus we complete the proof.
+ 
+\begin_inset Formula $\blacksquare$
 \end_inset
 
 
