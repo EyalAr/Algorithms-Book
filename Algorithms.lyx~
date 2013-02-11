@@ -9100,6 +9100,10 @@ Algorithm which uses a flow network
 \end_layout
 
 \begin_layout Standard
+TODO
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
@@ -9752,6 +9756,1019 @@ Thus we complete the proof.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Chapter
+Cryptography
+\end_layout
+
+\begin_layout Section
+Foundations
+\end_layout
+
+\begin_layout Subsection
+Survey of group theory
+\end_layout
+
+\begin_layout Definition
+Group.
+\end_layout
+
+\begin_layout Definition
+A non-empty group 
+\begin_inset Formula $G$
+\end_inset
+
+ with some operation 
+\begin_inset Formula $\circ$
+\end_inset
+
+, such that 
+\begin_inset Formula $\circ:G\times G\rightarrow G$
+\end_inset
+
+, holds the following properties:
+\end_layout
+
+\begin_layout Enumerate
+Associativity: 
+\begin_inset Formula $\forall a,b,c\in G:a\circ\left(b\circ c\right)=\left(a\circ b\right)\circ c$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Existence of 
+\emph on
+identity element
+\emph default
+ 
+\begin_inset Formula $e$
+\end_inset
+
+: There exists 
+\begin_inset Formula $e\in G$
+\end_inset
+
+ such that for every 
+\begin_inset Formula $a\in G$
+\end_inset
+
+ it holds 
+\begin_inset Formula $a\circ e=e\circ a=a$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Existence of 
+\emph on
+inverse element: F
+\emph default
+or every 
+\begin_inset Formula $a\in G$
+\end_inset
+
+ there exists 
+\begin_inset Formula $a^{-1}\in G$
+\end_inset
+
+ such that 
+\begin_inset Formula $a\circ a^{-1}=a^{-1}\circ a=e$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Remark
+We denote a group 
+\begin_inset Formula $G$
+\end_inset
+
+ with operation 
+\begin_inset Formula $\circ$
+\end_inset
+
+ as a tuple 
+\begin_inset Formula $\left(G,\circ\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma
+The identity element of 
+\begin_inset Formula $G$
+\end_inset
+
+ is unique.
+\end_layout
+
+\begin_layout Proof
+Assume there are two identity elements 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Because 
+\begin_inset Formula $a$
+\end_inset
+
+ is an identity element we have 
+\begin_inset Formula $a\circ b=b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Because 
+\begin_inset Formula $b$
+\end_inset
+
+ is an identity element we have 
+\begin_inset Formula $a\circ b=a$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Thus we conclude 
+\begin_inset Formula $a=b$
+\end_inset
+
+, which means the identity element is unique.
+\end_layout
+
+\begin_layout Lemma
+For each 
+\begin_inset Formula $a\in G$
+\end_inset
+
+ there is a unique inverse element 
+\begin_inset Formula $a^{-1}\in G$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Assume 
+\begin_inset Formula $a$
+\end_inset
+
+ has two inverse elements 
+\begin_inset Formula $b,c$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Because 
+\begin_inset Formula $c$
+\end_inset
+
+ is an inverse element of 
+\begin_inset Formula $a$
+\end_inset
+
+: 
+\begin_inset Formula $b\circ\left(a\circ c\right)=b\circ e=b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Because 
+\begin_inset Formula $b$
+\end_inset
+
+ is an inverse element of 
+\begin_inset Formula $a$
+\end_inset
+
+: 
+\begin_inset Formula $b\circ\left(a\circ c\right)=\left(b\circ a\right)\circ c=e\circ c=c$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Thus we conclude 
+\begin_inset Formula $b=c$
+\end_inset
+
+, which means the inverse element is unique.
+\end_layout
+
+\begin_layout Standard
+[TODO - more definitions.
+ such as sub groups, 
+\begin_inset Formula $ord_{G}\left(a\right)$
+\end_inset
+
+, etc.]
+\end_layout
+
+\begin_layout Theorem
+Lagrange's theorem.
+\end_layout
+
+\begin_layout Theorem
+Let 
+\begin_inset Formula $G$
+\end_inset
+
+ be a finite group and 
+\begin_inset Formula $H\subseteq G$
+\end_inset
+
+ a subgroup, then 
+\begin_inset Formula $\left|H\right|$
+\end_inset
+
+ divides 
+\begin_inset Formula $\left|G\right|$
+\end_inset
+
+ (
+\begin_inset Formula $\left|G\right|\mod\left|H\right|=0$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Proof
+For each 
+\begin_inset Formula $a\in G$
+\end_inset
+
+ we denote 
+\begin_inset Formula $aH=\left\{ a\cdot h|h\in H\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+We will see that for every 
+\begin_inset Formula $a,b\in G$
+\end_inset
+
+ either 
+\begin_inset Formula $aH=bH$
+\end_inset
+
+ or 
+\begin_inset Formula $aH\cap bH=\emptyset$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Let's assume there is 
+\begin_inset Formula $x\in aH\cap bH$
+\end_inset
+
+.
+ It means that there are 
+\begin_inset Formula $h_{1},h_{2}\in H$
+\end_inset
+
+ such that 
+\begin_inset Formula $x=a\cdot h_{1}=b\cdot h_{2}$
+\end_inset
+
+.
+ Thus 
+\begin_inset Formula $b^{-1}\cdot a=h_{2}\cdot h_{1}^{-1}$
+\end_inset
+
+ which means that 
+\begin_inset Formula $b^{-1}\cdot a\in H$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+We will now show that 
+\begin_inset Formula $aH\subseteq bH$
+\end_inset
+
+ and 
+\begin_inset Formula $bH\subseteq aH$
+\end_inset
+
+, and conclude that 
+\begin_inset Formula $aH=bH$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+We will show 
+\begin_inset Formula $aH\subseteq bH$
+\end_inset
+
+, and the other direction is analogous.
+\end_layout
+
+\begin_layout Proof
+Let 
+\begin_inset Formula $x=bh\in bH$
+\end_inset
+
+.
+ We can write 
+\begin_inset Formula $x=b\underset{e}{\underbrace{\left(\left(b^{-1}a\right)\left(b^{-1}a\right)^{-1}\right)}}h=b\left(b^{-1}a\right)\left(b^{-1}a\right)^{-1}h=a\left(b^{-1}a\right)^{-1}h$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+We have seen that 
+\begin_inset Formula $b^{-1}a\in H$
+\end_inset
+
+, and thus also 
+\begin_inset Formula $\left(b^{-1}a\right)^{-1}\in H$
+\end_inset
+
+ and 
+\begin_inset Formula $\left(b^{-1}a\right)^{-1}h\in H$
+\end_inset
+
+.
+ Thus we conclude 
+\begin_inset Formula $x=a\left(b^{-1}a\right)^{-1}h\in aH$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+We have seen that if 
+\begin_inset Formula $x\in bH$
+\end_inset
+
+ then 
+\begin_inset Formula $x\in aH$
+\end_inset
+
+, which means 
+\begin_inset Formula $bH\subseteq aH$
+\end_inset
+
+, as needed (along with the opposite direction of 
+\begin_inset Formula $aH\subseteq bH$
+\end_inset
+
+) to conclude that 
+\begin_inset Formula $aH=bH$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Now we will see that for every 
+\begin_inset Formula $a,b\in G$
+\end_inset
+
+: 
+\begin_inset Formula $\left|aH\right|=\left|bH\right|$
+\end_inset
+
+.
+ Obviously it's true if 
+\begin_inset Formula $aH=bH$
+\end_inset
+
+, so we assume that 
+\begin_inset Formula $aH\cap bH=\emptyset$
+\end_inset
+
+.
+ We will define a bijection 
+\begin_inset Formula $\varphi:aH\rightarrow bH$
+\end_inset
+
+.
+ If we show that 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ is indeed a bijection, then we can conclude 
+\begin_inset Formula $\left|aH\right|=\left|bH\right|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+We define 
+\begin_inset Formula $\varphi\left(x\right)=b\cdot a^{-1}x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+For 
+\begin_inset Formula $x=a\cdot h\in aH$
+\end_inset
+
+ we have 
+\begin_inset Formula $\varphi\left(x\right)=b\cdot a^{-1}a\cdot h=b\cdot h\in bH$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+First we show that 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ is injective.
+\end_layout
+
+\begin_layout Proof
+For some 
+\begin_inset Formula $x,y$
+\end_inset
+
+ we have 
+\begin_inset Formula $\varphi\left(x\right)=\varphi\left(y\right)$
+\end_inset
+
+ 
+\begin_inset Formula $\Leftrightarrow$
+\end_inset
+
+ 
+\begin_inset Formula $b\cdot a^{-1}x=b\cdot a^{-1}y$
+\end_inset
+
+ 
+\begin_inset Formula $\Leftrightarrow$
+\end_inset
+
+ 
+\begin_inset Formula $\left(b^{-1}\cdot a\right)\cdot b\cdot a^{-1}x=\left(b^{-1}\cdot a\right)\cdot b\cdot a^{-1}y$
+\end_inset
+
+ 
+\begin_inset Formula $\Leftrightarrow$
+\end_inset
+
+ 
+\begin_inset Formula $x=y$
+\end_inset
+
+.
+ So 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ is indeed injection.
+\end_layout
+
+\begin_layout Proof
+Now we will show that 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ is surjective.
+\end_layout
+
+\begin_layout Proof
+Each 
+\begin_inset Formula $y\in bH$
+\end_inset
+
+ has the form 
+\begin_inset Formula $y=b\cdot h$
+\end_inset
+
+ which is exactly 
+\begin_inset Formula $\varphi\left(x\right)$
+\end_inset
+
+ with 
+\begin_inset Formula $x=a\cdot h\in aH$
+\end_inset
+
+.
+ Thus 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ is surjective.
+\end_layout
+
+\begin_layout Proof
+we have shown that 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ is indeed a bijection and we can conclude 
+\begin_inset Formula $\left|aH\right|=\left|bH\right|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Greatest common divisor (GCD)
+\end_layout
+
+\begin_layout Definition
+Greatest Common Divisor.
+\end_layout
+
+\begin_layout Definition
+Let 
+\begin_inset Formula $a,b\in\mathbb{N}$
+\end_inset
+
+ such that 
+\begin_inset Formula $a\geq b$
+\end_inset
+
+.
+ The GCD of 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+ is the largest 
+\begin_inset Formula $d\in\mathbb{N}$
+\end_inset
+
+ (
+\begin_inset Formula $d\geq1$
+\end_inset
+
+) such that 
+\begin_inset Formula $d$
+\end_inset
+
+ divides both 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+ without a remainder.
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula $gcd\left(a,b\right)=\max\left\{ d\in\mathbb{N},d\geq1:a\mod d=b\mod d=0\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Theorem
+Fundamental theorem of arithmetic.
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:Fundamental-theorem-of-arithm"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+Every 
+\begin_inset Formula $n\in\mathbb{N}$
+\end_inset
+
+ (
+\begin_inset Formula $n>1$
+\end_inset
+
+) can be written as a product of prime numbers.
+ The primes involved in the product are unique.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Formula $n=p_{1}^{r_{1}}\cdot p_{2}^{r_{2}}\cdot...\cdot p_{k}^{r_{k}}=\prod_{i=1}^{k}p_{i}^{r_{i}}$
+\end_inset
+
+, where each 
+\begin_inset Formula $p_{i}$
+\end_inset
+
+ is a prime number and each 
+\begin_inset Formula $e_{i}\in\mathbb{N}\cup\left\{ 0\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Greatest Common Divisor (alternative).
+\end_layout
+
+\begin_layout Definition
+Let 
+\begin_inset Formula $a,b\in\mathbb{N}$
+\end_inset
+
+ such that 
+\begin_inset Formula $a\geq b>1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+By theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Fundamental-theorem-of-arithm"
+
+\end_inset
+
+ we can write:
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula $a=p_{1}^{e_{1}}\cdot p_{2}^{e_{2}}\cdot...\cdot p_{k}^{e_{k}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula $b=p_{1}^{f_{1}}\cdot p_{2}^{f_{2}}\cdot...\cdot p_{k}^{f_{k}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Where 
+\begin_inset Formula $\left\{ p_{i}\right\} _{i=1}^{k}$
+\end_inset
+
+ is the set of prime numbers which devide both 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+ (remember 
+\begin_inset Formula $e_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ can be zero).
+\end_layout
+
+\begin_layout Definition
+Then: 
+\begin_inset Formula $gcd\left(a,b\right)=p_{1}^{\min\left\{ e_{1},f_{1}\right\} }\cdot p_{2}^{\min\left\{ e_{2},f_{2}\right\} }\cdot...\cdot p_{k}^{\min\left\{ e_{k},f_{k}\right\} }=\prod_{i=1}^{k}p_{i}^{\min\left\{ e_{i},f_{i}\right\} }$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Claim
+Let 
+\begin_inset Formula $a,b\in\mathbb{N}$
+\end_inset
+
+ such that 
+\begin_inset Formula $a\geq b$
+\end_inset
+
+, and 
+\begin_inset Formula $S=\left\{ a\cdot x+b\cdot y|x,y\in\mathbb{Z},a\cdot x+b\cdot y\geq1\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Claim
+Then: 
+\begin_inset Formula $gcd\left(a,b\right)=\min S$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+We denote 
+\begin_inset Formula $t=gcd\left(a,b\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $z=\min S$
+\end_inset
+
+.
+ We want to prove 
+\begin_inset Formula $t=z$
+\end_inset
+
+.
+ For this we will show that 
+\begin_inset Formula $t\leq z$
+\end_inset
+
+ and 
+\begin_inset Formula $z\leq t$
+\end_inset
+
+ and conclude 
+\begin_inset Formula $t=z$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $t\leq z$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Proof
+We will see that 
+\begin_inset Formula $z\mod t=0$
+\end_inset
+
+, which means that 
+\begin_inset Formula $t\leq z$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $t=gcd\left(a,b\right)$
+\end_inset
+
+ so 
+\begin_inset Formula $a\mod t=0$
+\end_inset
+
+ and 
+\begin_inset Formula $b\mod t=0$
+\end_inset
+
+, which means that there exist some 
+\begin_inset Formula $k_{1},k_{2}\in\mathbb{N}$
+\end_inset
+
+ such that 
+\begin_inset Formula $t\cdot k_{1}=a$
+\end_inset
+
+ and 
+\begin_inset Formula $t\cdot k_{2}=b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Also, 
+\begin_inset Formula $z\in S$
+\end_inset
+
+, which means there exist some 
+\begin_inset Formula $x,y\in\mathbb{Z}$
+\end_inset
+
+ such that 
+\begin_inset Formula $z=ax+by$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Now we can write 
+\begin_inset Formula $z=ax+by=t\cdot k_{1}\cdot x+t\cdot k_{2}\cdot y=t\left(k_{1}x+k_{2}y\right)$
+\end_inset
+
+.
+ Which means that 
+\begin_inset Formula $z\mod t=0$
+\end_inset
+
+, as needed.
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $z\leq t$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Proof
+We will show that 
+\begin_inset Formula $z$
+\end_inset
+
+ divides both 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+, but because 
+\begin_inset Formula $t$
+\end_inset
+
+ is the maximal such divisor, we will conclude 
+\begin_inset Formula $z\leq t$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+We will prove for 
+\begin_inset Formula $a$
+\end_inset
+
+, and the proof for 
+\begin_inset Formula $b$
+\end_inset
+
+ is analogous.
+\end_layout
+
+\begin_layout Proof
+First we will show that 
+\begin_inset Formula $z\leq a$
+\end_inset
+
+.
+ Assume it isn't, so 
+\begin_inset Formula $z>a$
+\end_inset
+
+.
+ We define 
+\begin_inset Formula $z^{'}=1\cdot a+0\cdot b$
+\end_inset
+
+.
+ By definition of 
+\begin_inset Formula $S$
+\end_inset
+
+, 
+\begin_inset Formula $z^{'}\in S$
+\end_inset
+
+, and obviously 
+\begin_inset Formula $z^{'}=a$
+\end_inset
+
+.
+ Thus 
+\begin_inset Formula $z^{'}<z$
+\end_inset
+
+, but this contradicts the minimality of 
+\begin_inset Formula $z$
+\end_inset
+
+ in 
+\begin_inset Formula $S$
+\end_inset
+
+.
+ So 
+\begin_inset Formula $z\leq a$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Now we can write 
+\begin_inset Formula $a=k\cdot z+r$
+\end_inset
+
+ with 
+\begin_inset Formula $0\leq r\leq z-1$
+\end_inset
+
+.
+ All that is left is to show that 
+\begin_inset Formula $r=0$
+\end_inset
+
+ (and thus conclude that 
+\begin_inset Formula $z$
+\end_inset
+
+ divides 
+\begin_inset Formula $a$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $z\in S$
+\end_inset
+
+ so it must be of the form 
+\begin_inset Formula $z=ax+by$
+\end_inset
+
+, which means 
+\begin_inset Formula $r=a-k\cdot z=a\left(1-x\right)-by$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $r\geq1$
+\end_inset
+
+, then also 
+\begin_inset Formula $r\in S$
+\end_inset
+
+ (it fits the structure of 
+\begin_inset Formula $S$
+\end_inset
+
+), and from the minimality of 
+\begin_inset Formula $z$
+\end_inset
+
+ in 
+\begin_inset Formula $S$
+\end_inset
+
+ we conclude 
+\begin_inset Formula $r\geq z$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $r$
+\end_inset
+
+ was defined 
+\begin_inset Formula $r\leq z-1$
+\end_inset
+
+, so we have a contradiction, and thus 
+\begin_inset Formula $r=0$
+\end_inset
+
+, as needed.
+\end_layout
+
+\begin_layout Subsubsection
+Euclid's algorithm for GCD
 \end_layout
 
 \begin_layout Standard
