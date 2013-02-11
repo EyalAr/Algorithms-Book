@@ -9980,11 +9980,18 @@ Thus we conclude
 \begin_inset Formula $ord_{G}\left(a\right)$
 \end_inset
 
-, etc.]
+, cyclic group, etc.]
 \end_layout
 
 \begin_layout Theorem
 Lagrange's theorem.
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:Lagrange's-theorem."
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Theorem
@@ -10005,7 +10012,7 @@ Let
 \end_inset
 
  (
-\begin_inset Formula $\left|G\right|\mod\left|H\right|=0$
+\begin_inset Formula $\left|G\right|=0\mod\left|H\right|$
 \end_inset
 
 ).
@@ -10285,12 +10292,892 @@ Each
 \end_layout
 
 \begin_layout Proof
-we have shown that 
+We have shown that 
 \begin_inset Formula $\varphi$
 \end_inset
 
  is indeed a bijection and we can conclude 
 \begin_inset Formula $\left|aH\right|=\left|bH\right|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Now we can conclude that there is a set of elements 
+\begin_inset Formula $\left\{ a_{1},a_{2},...,a_{k}\right\} $
+\end_inset
+
+ in 
+\begin_inset Formula $G$
+\end_inset
+
+ such that all the sets 
+\begin_inset Formula $a_{1}H,a_{2}H,...,a_{k}H$
+\end_inset
+
+ are mutually disjoint, and such that for every 
+\begin_inset Formula $b\in G$
+\end_inset
+
+ there is some 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+ for which 
+\begin_inset Formula $bH=a_{i}H$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+We would now like to see that 
+\begin_inset Formula $G=\cup_{i=1}^{k}a_{i}H$
+\end_inset
+
+.
+ Obviously 
+\begin_inset Formula $\cup_{i=1}^{k}a_{i}H\subseteq G$
+\end_inset
+
+, and we will now show 
+\begin_inset Formula $G\subseteq\cup_{i=1}^{k}a_{i}H$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+We will show by negation.
+ Assume there is some 
+\begin_inset Formula $b\in G$
+\end_inset
+
+ such that 
+\begin_inset Formula $b\notin a_{i}H$
+\end_inset
+
+ for any 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ This means that 
+\begin_inset Formula $bH\cap a_{i}H=\emptyset$
+\end_inset
+
+ for any 
+\begin_inset Formula $i$
+\end_inset
+
+, which means that 
+\begin_inset Formula $b$
+\end_inset
+
+ is in the set 
+\begin_inset Formula $\left\{ a_{1},a_{2},...,a_{k}\right\} $
+\end_inset
+
+, thus 
+\begin_inset Formula $b=a_{i}$
+\end_inset
+
+ for some 
+\begin_inset Formula $i$
+\end_inset
+
+ and 
+\begin_inset Formula $b\in a_{i}H$
+\end_inset
+
+, which is a contradiction.
+\end_layout
+
+\begin_layout Proof
+Now we can conclude 
+\begin_inset Formula $G=\cup_{i=1}^{k}a_{i}H$
+\end_inset
+
+.
+ We have already seen that 
+\begin_inset Formula $\left|a_{i}H\right|=\left|a_{j}H\right|$
+\end_inset
+
+ for any 
+\begin_inset Formula $i,j$
+\end_inset
+
+, that all 
+\begin_inset Formula $a_{i}H$
+\end_inset
+
+'s are disjoint and that 
+\begin_inset Formula $\left|a_{i}H\right|=\left|H\right|$
+\end_inset
+
+ (by the definition of 
+\begin_inset Formula $a_{i}H$
+\end_inset
+
+).
+ Thus 
+\begin_inset Formula $G=k\cdot\left|H\right|$
+\end_inset
+
+, which means that 
+\begin_inset Formula $\left|H\right|$
+\end_inset
+
+ divides 
+\begin_inset Formula $\left|G\right|$
+\end_inset
+
+, as needed to complete the proof.
+ 
+\begin_inset Formula $\blacksquare$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Euclid's lemma.
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:Euclid's-lemma."
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Let 
+\begin_inset Formula $p$
+\end_inset
+
+ be a prime number and 
+\begin_inset Formula $a,b\in\mathbb{N}$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $p$
+\end_inset
+
+ divides 
+\begin_inset Formula $a\cdot b$
+\end_inset
+
+ then 
+\begin_inset Formula $p$
+\end_inset
+
+ also divides 
+\begin_inset Formula $a$
+\end_inset
+
+ or 
+\begin_inset Formula $b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout --Separator--
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Lemma
+\begin_inset Formula $\mathbb{Z}_{n}^{*}=\left\{ 1\leq a\leq n-1:gcd\left(a,n\right)=1\right\} $
+\end_inset
+
+.
+ 
+\begin_inset Formula $\left(\mathbb{Z}_{n}^{*},\circ\right)$
+\end_inset
+
+, with 
+\begin_inset Formula $\circ$
+\end_inset
+
+ as the modulu-
+\begin_inset Formula $n$
+\end_inset
+
+ product operation is a group.
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:.z*p-prod-mod-n-is-a-group"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+We prove the properties:
+\end_layout
+
+\begin_layout Itemize
+Closure with respect to 
+\begin_inset Formula $\circ$
+\end_inset
+
+ - the modulu-
+\begin_inset Formula $n$
+\end_inset
+
+ product operation.
+ Let 
+\begin_inset Formula $a,b\in\mathbb{Z}_{n}^{*}$
+\end_inset
+
+, we will show that 
+\begin_inset Formula $a\circ b\in\mathbb{Z}_{n}^{*}$
+\end_inset
+
+.
+ We need to show that if 
+\begin_inset Formula $gcd\left(a,n\right)=1$
+\end_inset
+
+ and 
+\begin_inset Formula $gcd\left(b,n\right)=1$
+\end_inset
+
+ then also 
+\begin_inset Formula $gcd\left(a\circ b,n\right)=1$
+\end_inset
+
+.
+ We prove by negation.
+ Assume 
+\begin_inset Formula $gcd\left(a\circ b,n\right)>1$
+\end_inset
+
+, then there is some prime number 
+\begin_inset Formula $p$
+\end_inset
+
+ such that it divides both 
+\begin_inset Formula $a\circ b$
+\end_inset
+
+ and 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ Now, from lemma 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:Euclid's-lemma."
+
+\end_inset
+
+, either one of the following two options hold:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $p$
+\end_inset
+
+ divides both 
+\begin_inset Formula $n$
+\end_inset
+
+ and 
+\begin_inset Formula $a$
+\end_inset
+
+, and so 
+\begin_inset Formula $gcd\left(a,n\right)>1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $p$
+\end_inset
+
+ divides both 
+\begin_inset Formula $n$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+, and so 
+\begin_inset Formula $gcd\left(b,n\right)>1$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Either one of the options is a contradiction, so we conclude 
+\begin_inset Formula $gcd\left(a\circ b,n\right)=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Associativity - Follows immediately from the properties of the modulu-
+\begin_inset Formula $n$
+\end_inset
+
+ product operation.
+\end_layout
+
+\begin_layout Itemize
+Existence of 
+\emph on
+identity element
+\emph default
+ 
+\begin_inset Formula $e$
+\end_inset
+
+: 
+\begin_inset Formula $e=1\in\mathbb{Z}_{n}^{*}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Existence of 
+\emph on
+inverse element: 
+\emph default
+From corollary 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cor:corollary-from-euclids-extended"
+
+\end_inset
+
+ we can conclude that there is 
+\begin_inset Formula $x$
+\end_inset
+
+ such that 
+\begin_inset Formula $x\cdot a+y\cdot n=1$
+\end_inset
+
+, or 
+\begin_inset Formula $x\cdot a=1\mod n$
+\end_inset
+
+.
+ We define 
+\begin_inset Formula $b=x\mod n$
+\end_inset
+
+.
+ Obviously 
+\begin_inset Formula $0\leq b\leq n-1$
+\end_inset
+
+ and 
+\begin_inset Formula $b\cdot a=1\mod n$
+\end_inset
+
+.
+ Now we just need to show that 
+\begin_inset Formula $b\in\mathbb{Z}_{p}^{*}$
+\end_inset
+
+, or that 
+\begin_inset Formula $gcd\left(b,n\right)=1$
+\end_inset
+
+.
+ We prove this by negation.
+ Assume 
+\begin_inset Formula $gcd\left(b,n\right)>1$
+\end_inset
+
+, then there is some prime number 
+\begin_inset Formula $p$
+\end_inset
+
+ that divides both 
+\begin_inset Formula $b$
+\end_inset
+
+ and 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ This also means that 
+\begin_inset Formula $p$
+\end_inset
+
+ divides 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ Finally we conclude that 
+\begin_inset Formula $p$
+\end_inset
+
+ also divides 
+\begin_inset Formula $x\cdot a+y\cdot n$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $x\cdot a+y\cdot n=1$
+\end_inset
+
+, which means that 
+\begin_inset Formula $p$
+\end_inset
+
+ divides 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ But this is impossible.
+ So we conclude that indeed 
+\begin_inset Formula $gcd\left(b,n\right)=1$
+\end_inset
+
+ and thus 
+\begin_inset Formula $b\cdot a=1\mod n$
+\end_inset
+
+, and 
+\begin_inset Formula $b$
+\end_inset
+
+ is the inverse element of 
+\begin_inset Formula $a$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+For a prime number 
+\begin_inset Formula $p\in\mathbb{N}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbb{Z}_{p}^{*}$
+\end_inset
+
+ is the product modulu group of the field 
+\begin_inset Formula $\mathbb{F}_{p}\backslash\left\{ 0\right\} $
+\end_inset
+
+.
+ Remember that 
+\begin_inset Formula $\mathbb{F}_{n}=\left\{ 0,1,...,n-1\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+We define 
+\begin_inset Formula $\mathbb{Z}_{p}^{*}=\left(\mathbb{F}_{p}\backslash\left\{ 0\right\} ,\circ\right)$
+\end_inset
+
+, with 
+\begin_inset Formula $\circ$
+\end_inset
+
+ as the modulu-
+\begin_inset Formula $p$
+\end_inset
+
+ product operation.
+ Obviously 
+\begin_inset Formula $\mathbb{Z}_{p}^{*}=\left\{ 1,2,...,p-1\right\} $
+\end_inset
+
+and 
+\begin_inset Formula $\left|\mathbb{Z}_{p}^{*}\right|=p-1$
+\end_inset
+
+.
+ Notice that this definition coincides with the group defined in lemma 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:.z*p-prod-mod-n-is-a-group"
+
+\end_inset
+
+ for a prime number.
+\end_layout
+
+\begin_layout Corollary
+Fermat's little theorem.
+\end_layout
+
+\begin_layout Corollary
+Let 
+\begin_inset Formula $p$
+\end_inset
+
+ be a prime number and 
+\begin_inset Formula $a\in\mathbb{N}$
+\end_inset
+
+ which does not divide by 
+\begin_inset Formula $p$
+\end_inset
+
+; then 
+\begin_inset Formula $p$
+\end_inset
+
+ devides 
+\begin_inset Formula $a^{p-1}-1$
+\end_inset
+
+: 
+\begin_inset Formula $a^{p-1}-1=0\mod p$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+We need to show that 
+\begin_inset Formula $a^{p-1}-1=0\mod p$
+\end_inset
+
+, or equivalently 
+\begin_inset Formula $a^{p-1}=1\mod p$
+\end_inset
+
+.
+ We notice that by the properties of modular product
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Suppose we have 
+\begin_inset Formula $p$
+\end_inset
+
+ and 
+\begin_inset Formula $n>p$
+\end_inset
+
+, then we can write 
+\begin_inset Formula $n=k\cdot p+r$
+\end_inset
+
+ for some 
+\begin_inset Formula $k$
+\end_inset
+
+ and 
+\begin_inset Formula $0\leq r<p$
+\end_inset
+
+, or 
+\begin_inset Formula $n\mod p=r$
+\end_inset
+
+.
+ For some 
+\begin_inset Formula $m\in\mathbb{N}$
+\end_inset
+
+: 
+\begin_inset Formula $n^{m}=\left(k\cdot p+r\right)^{m}=\sum_{i=0}^{m}\left(\begin{array}{c}
+m\\
+i
+\end{array}\right)\left(k\cdot p\right)^{i}\cdot r^{m-i}$
+\end_inset
+
+, for any 
+\begin_inset Formula $i\neq0$
+\end_inset
+
+ we have 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\left(k\cdot p\right)^{i}=0\mod p$
+\end_inset
+
+, and for 
+\begin_inset Formula $i=0$
+\end_inset
+
+ we have 
+\begin_inset Formula $\left(k\cdot p\right)^{i}=1\mod p$
+\end_inset
+
+, thus 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $n^{m}=r^{m}\mod p=\left(n\mod p\right)^{m}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+, this is equivalent to showing 
+\begin_inset Formula $\left(a\mod p\right)^{p-1}=1\mod p$
+\end_inset
+
+.
+ We notice that 
+\begin_inset Formula $a\mod p\in\mathbb{Z}_{p}^{*}$
+\end_inset
+
+ (becaseu 
+\begin_inset Formula $a$
+\end_inset
+
+ does not divide by 
+\begin_inset Formula $p$
+\end_inset
+
+), so it's actually enough to show that for any 
+\begin_inset Formula $b\in\mathbb{Z}_{p}^{*}$
+\end_inset
+
+ we have 
+\begin_inset Formula $b^{p-1}=1$
+\end_inset
+
+ (in 
+\begin_inset Formula $\mathbb{Z}_{p}^{*}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Proof
+We denote 
+\begin_inset Formula $m=ord_{\mathbb{Z}_{p}^{*}}\left(b\right)=\left|\left\langle b\right\rangle \right|$
+\end_inset
+
+ (the order of 
+\begin_inset Formula $b$
+\end_inset
+
+ in 
+\begin_inset Formula $\mathbb{Z}_{p}^{*}$
+\end_inset
+
+, which means 
+\begin_inset Formula $b^{m}=e$
+\end_inset
+
+).
+ 
+\begin_inset Formula $\left\langle b\right\rangle $
+\end_inset
+
+ is a subgroup of 
+\begin_inset Formula $\mathbb{Z}_{p}^{*}$
+\end_inset
+
+, so by theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Lagrange's-theorem."
+
+\end_inset
+
+ we know that 
+\begin_inset Formula $m$
+\end_inset
+
+ devides 
+\begin_inset Formula $\left|\mathbb{Z}_{p}^{*}\right|=p-1$
+\end_inset
+
+.
+ In other words, there is some 
+\begin_inset Formula $k\in\mathbb{N}$
+\end_inset
+
+ such that 
+\begin_inset Formula $p-1=k\cdot m$
+\end_inset
+
+.
+ Now we can conclude 
+\begin_inset Formula $b^{p-1}=b^{k\cdot m}=\left(b^{m}\right)^{k}=e^{k}=e=1$
+\end_inset
+
+, as needed to complete the proof.
+\end_layout
+
+\begin_layout Lemma
+For every finite group 
+\begin_inset Formula $G$
+\end_inset
+
+ and 
+\begin_inset Formula $a\in G$
+\end_inset
+
+ it holds that 
+\begin_inset Formula $a^{\left|G\right|}=e$
+\end_inset
+
+ (with 
+\begin_inset Formula $e$
+\end_inset
+
+ as the identity element in 
+\begin_inset Formula $G$
+\end_inset
+
+).
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:For-every-finite"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Let's consider the cyclic group formed by 
+\begin_inset Formula $a$
+\end_inset
+
+: 
+\begin_inset Formula $\left\langle a\right\rangle $
+\end_inset
+
+.
+ We denote 
+\begin_inset Formula $m=\left|\left\langle a\right\rangle \right|$
+\end_inset
+
+, and we know that also 
+\begin_inset Formula $m=ord_{G}\left(a\right)$
+\end_inset
+
+, which means that 
+\begin_inset Formula $a^{m}=e$
+\end_inset
+
+.
+ But 
+\begin_inset Formula $\left|G\right|\geq m$
+\end_inset
+
+, thus also 
+\begin_inset Formula $a^{\left|G\right|}=e$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Euler's function: 
+\begin_inset Formula $\varphi\left(n\right)=\left|\mathbb{Z}_{n}^{*}\right|$
+\end_inset
+
+.
+ We notice that if 
+\begin_inset Formula $p$
+\end_inset
+
+ is prime, then 
+\begin_inset Formula $\varphi\left(p\right)=p-1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+Euler's theorem.
+\end_layout
+
+\begin_layout Theorem
+Let 
+\begin_inset Formula $n\in\mathbb{N}$
+\end_inset
+
+ and 
+\begin_inset Formula $a$
+\end_inset
+
+ such that 
+\begin_inset Formula $gcd\left(a,n\right)=1$
+\end_inset
+
+, then 
+\begin_inset Formula $a^{\varphi\left(n\right)}=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+It's enough to show that for 
+\begin_inset Formula $a\in\mathbb{Z}_{n}^{*}$
+\end_inset
+
+ then 
+\begin_inset Formula $a^{\varphi\left(n\right)}=1$
+\end_inset
+
+ in 
+\begin_inset Formula $\mathbb{Z}_{n}^{*}$
+\end_inset
+
+.
+ We recall 
+\begin_inset Formula $\varphi\left(n\right)=\left|\mathbb{Z}_{n}^{*}\right|$
+\end_inset
+
+, so the proof follows directly from lemma 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:For-every-finite"
+
 \end_inset
 
 .
@@ -10346,7 +11233,7 @@ Let
 \end_layout
 
 \begin_layout Definition
-\begin_inset Formula $gcd\left(a,b\right)=\max\left\{ d\in\mathbb{N},d\geq1:a\mod d=b\mod d=0\right\} $
+\begin_inset Formula $gcd\left(a,b\right)=\max\left\{ d\in\mathbb{N},d\geq1:a=0\mod d,b=0\mod d\right\} $
 \end_inset
 
 
@@ -10482,6 +11369,13 @@ Let
 \end_inset
 
 .
+\begin_inset CommandInset label
+LatexCommand label
+name "Let-min-ax+by"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Claim
@@ -10767,14 +11661,371 @@ Now we can write
 , as needed.
 \end_layout
 
+\begin_layout Claim
+Let 
+\begin_inset Formula $a,b$
+\end_inset
+
+ such that 
+\begin_inset Formula $a\geq b\geq0$
+\end_inset
+
+ and 
+\begin_inset Formula $a\neq0$
+\end_inset
+
+, then 
+\begin_inset Formula $gcd\left(a,b\right)=gcd\left(b,a\mod b\right)$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "Let-gcdab=gcdbamodb"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+We denote 
+\begin_inset Formula $d=gcd\left(a,b\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $d^{'}=gcd\left(b,a\mod b\right)$
+\end_inset
+
+.
+ We will show that 
+\begin_inset Formula $d=d^{'}$
+\end_inset
+
+ by showing 
+\begin_inset Formula $d\geq d^{'}$
+\end_inset
+
+ and 
+\begin_inset Formula $d^{'}\geq d$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $d^{'}\geq d$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Proof
+We will see that 
+\begin_inset Formula $d$
+\end_inset
+
+ divides both 
+\begin_inset Formula $b$
+\end_inset
+
+ and 
+\begin_inset Formula $a\mod b$
+\end_inset
+
+, and conclude 
+\begin_inset Formula $d^{'}\geq d$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $d$
+\end_inset
+
+ divides 
+\begin_inset Formula $a$
+\end_inset
+
+, so there exists some 
+\begin_inset Formula $k_{1}$
+\end_inset
+
+ such that 
+\begin_inset Formula $a=k_{1}d$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $d$
+\end_inset
+
+ divides 
+\begin_inset Formula $b$
+\end_inset
+
+, so there exists some 
+\begin_inset Formula $k_{2}$
+\end_inset
+
+ such that 
+\begin_inset Formula $b=k_{2}d$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+There exist some 
+\begin_inset Formula $k_{3},r\in\mathbb{N}$
+\end_inset
+
+ such that 
+\begin_inset Formula $r=a\mod b=a-k_{3}b$
+\end_inset
+
+ and 
+\begin_inset Formula $0\leq r\leq b-1$
+\end_inset
+
+.
+ We can write 
+\begin_inset Formula $r=k_{1}d-k_{3}k_{2}d=\left(k_{1}-k_{2}k_{3}\right)d=k_{4}d$
+\end_inset
+
+ (
+\begin_inset Formula $k_{4}>0$
+\end_inset
+
+ because 
+\begin_inset Formula $d,r>0$
+\end_inset
+
+), which means that 
+\begin_inset Formula $d$
+\end_inset
+
+ divides 
+\begin_inset Formula $a\mod b$
+\end_inset
+
+, as needed.
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $d\geq d^{'}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Proof
+We will see that 
+\begin_inset Formula $d^{'}$
+\end_inset
+
+ divides both 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+, and conclude 
+\begin_inset Formula $d\geq d^{'}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $d^{'}$
+\end_inset
+
+ divides 
+\begin_inset Formula $b$
+\end_inset
+
+, so there exists some 
+\begin_inset Formula $k_{1}$
+\end_inset
+
+ such that 
+\begin_inset Formula $b=k_{1}d^{'}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $d^{'}$
+\end_inset
+
+ divides 
+\begin_inset Formula $a\mod b$
+\end_inset
+
+, so there exists some 
+\begin_inset Formula $k_{2}$
+\end_inset
+
+ such that 
+\begin_inset Formula $a\mod b=k_{2}d^{'}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+There exist some 
+\begin_inset Formula $k_{3},r\in\mathbb{N}$
+\end_inset
+
+ such that 
+\begin_inset Formula $r=a\mod b=a-k_{3}b$
+\end_inset
+
+ and 
+\begin_inset Formula $0\leq r\leq b-1$
+\end_inset
+
+.
+ We can write 
+\begin_inset Formula $a=a\mod b+k_{3}b=k_{2}d^{'}+k_{3}k_{1}d^{'}=\left(k_{2}+k_{3}k_{1}\right)d^{'}=k_{4}d^{'}$
+\end_inset
+
+ (
+\begin_inset Formula $k_{4}>0$
+\end_inset
+
+ because 
+\begin_inset Formula $d^{'},a>0$
+\end_inset
+
+), which means that 
+\begin_inset Formula $d^{'}$
+\end_inset
+
+ divides 
+\begin_inset Formula $a$
+\end_inset
+
+, as needed.
+\end_layout
+
+\begin_layout Corollary
+Let 
+\begin_inset Formula $a,b\in\mathbb{N}$
+\end_inset
+
+ with 
+\begin_inset Formula $gcd\left(a,b\right)=1$
+\end_inset
+
+, then there exist 
+\begin_inset Formula $x,y$
+\end_inset
+
+ such that 
+\begin_inset Formula $x\cdot a+y\cdot b=1$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "cor:corollary-from-euclids-extended"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Euclid's algorithm for GCD
 \end_layout
 
+\begin_layout Paragraph
+Input:
+\end_layout
+
 \begin_layout Standard
-\begin_inset CommandInset index_print
-LatexCommand printindex
-type "idx"
+\begin_inset Formula $a,b\in\mathbb{N}$
+\end_inset
+
+ and 
+\begin_inset Formula $a>b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Output:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $gcd\left(a,b\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Euclid(a,b):
+\end_layout
+
+\begin_layout Plain Layout
+
+  if b = 0:
+\end_layout
+
+\begin_layout Plain Layout
+
+    return a
+\end_layout
+
+\begin_layout Plain Layout
+
+  else:
+\end_layout
+
+\begin_layout Plain Layout
+
+    return Euclid(b, a mod b)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Euclid's algorithm for GCD
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -10782,8 +12033,210 @@ type "idx"
 \end_layout
 
 \begin_layout Standard
-\begin_inset FloatList figure
+The correctness of the algorithm follows directly from claim 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Let-gcdab=gcdbamodb"
 
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Euclid's extended algorithm
+\end_layout
+
+\begin_layout Standard
+By claim 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Let-min-ax+by"
+
+\end_inset
+
+ we know there are 
+\begin_inset Formula $x,y$
+\end_inset
+
+ such that 
+\begin_inset Formula $a\cdot x+b\cdot y=gcd\left(a,b\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Input:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $a,b\in\mathbb{N}$
+\end_inset
+
+ and 
+\begin_inset Formula $a>b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Output:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(g,x,y)$
+\end_inset
+
+ such that 
+\begin_inset Formula $g=gcd\left(a,b\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $a\cdot x+b\cdot y=gcd\left(a,b\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Extended_Euclid(a,b):
+\end_layout
+
+\begin_layout Plain Layout
+
+  if b = 0:
+\end_layout
+
+\begin_layout Plain Layout
+
+    return (g, x, y) = (a, 1, 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+  else:
+\end_layout
+
+\begin_layout Plain Layout
+
+    (g', x', y') = Extended_Euclid(b, a mod b)
+\end_layout
+
+\begin_layout Plain Layout
+
+    return (g, x, y) = (g', y', x' - y' * floor(a/b))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Euclid's extended algorithm for GCD
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Correctness:
+\end_layout
+
+\begin_layout Standard
+We will prove the correctness of the recurssion.
+\end_layout
+
+\begin_layout Standard
+Base: If 
+\begin_inset Formula $b=0$
+\end_inset
+
+, then it obvious.
+\end_layout
+
+\begin_layout Standard
+By the recurssion we know that 
+\begin_inset Formula $g'=gcd\left(b,a\mod b\right)$
+\end_inset
+
+, but by claim 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Let-gcdab=gcdbamodb"
+
+\end_inset
+
+ 
+\begin_inset Formula $gcd\left(b,a\mod b\right)=gcd\left(a,b\right)$
+\end_inset
+
+, thus 
+\begin_inset Formula $g=g^{'}$
+\end_inset
+
+ is correct.
+\end_layout
+
+\begin_layout Standard
+Also, by the recurssion, 
+\begin_inset Formula $x^{'}b+y^{'}\left(a\mod b\right)=g^{'}=g$
+\end_inset
+
+.
+ We also know that 
+\begin_inset Formula $a\mod b=a-k\cdot b$
+\end_inset
+
+ for some 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ Notice that 
+\begin_inset Formula $k=\left\lfloor \frac{a}{b}\right\rfloor $
+\end_inset
+
+ (by definition of remainder).
+ So now we have 
+\begin_inset Formula $g=x^{'}b+y^{'}\left(a-k\cdot b\right)=x^{'}b+y^{'}a-y^{'}\cdot k\cdot b=y^{'}a+\left(x^{'}-k\cdot y^{'}\right)b=y^{'}a+\left(x^{'}-\left\lfloor \frac{a}{b}\right\rfloor \cdot y^{'}\right)b$
+\end_inset
+
+, and indeed 
+\begin_inset Formula $x=y^{'}$
+\end_inset
+
+ and 
+\begin_inset Formula $y=x^{'}-\left\lfloor \frac{a}{b}\right\rfloor \cdot y^{'}$
+\end_inset
+
+, as needed.
+ 
+\begin_inset Formula $\blacksquare$
 \end_inset
 
 
